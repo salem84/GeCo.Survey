@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Surveys";
+}
+
+<h2>Surveys</h2>
+
+<div id="surveyList">
+<ul>
+@foreach (var survey in Model)
+{
+    UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
+    string url = u.Action("Compila", "Surveys", new {id = "1"});
+    
+    <li>
+    @survey.Id - @survey.Name <a href='@url'>(Compila)</a>
+    </li>
+}
+</ul>
+
+</div>
