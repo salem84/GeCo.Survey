@@ -1,34 +1,42 @@
-﻿@{
+﻿@model GeCoSurvey.Domain.Survey
+@{
     ViewBag.Title = "Compila";
 }
 
+
 <h2>Compila</h2>
-@RenderQuestion(Model.Questions);
+@using (Html.BeginForm())
+{
+    //@Html.HiddenFor(model => model.Id);
+
+    @RenderQuestion(Model.Questions);
+
+    <input type="submit" value="Invia" />
+}
+
+
 
 @using GeCoSurvey.Domain;
 @helper RenderQuestion(IEnumerable<Question> domande)
-{
-    foreach(var d in domande)
+    {
+    foreach (var d in domande)
     {
         string testo = d.Text;
         string idQuestion = d.Id.ToString();
         IEnumerable<SubQuestion> subquestions = d.Children;
 
-        <span>@testo</span>
-        <br />
+        <span>@testo</span><br />
         
         @RenderSubQuestion(idQuestion, subquestions);
     }
 }
 
 @helper RenderSubQuestion(string idQuestion, IEnumerable<SubQuestion> subquestions)
-{
+    {
     foreach (var s in subquestions)
     {
         string idSubQuestion = s.Id.ToString();
         string testo = s.Text;
-        <input type='radio' id='q@idSubQuestion' name='c@idQuestion' value='@idSubQuestion' />
-        @testo
-        <br />
+        <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
     }
 }

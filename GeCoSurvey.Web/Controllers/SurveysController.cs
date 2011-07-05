@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GeCoSurvey.Service;
+using GeCoSurvey.Domain;
 
 namespace GeCoSurvey.Web.Controllers
 {
@@ -25,10 +26,25 @@ namespace GeCoSurvey.Web.Controllers
             return View(surveys);
         }
 
-        public ActionResult Compila()
+        public ActionResult Compila(int id)
         {
-            var survey = surveyService.GetSurvey(1);
+            var survey = surveyService.GetSurvey(id);
             return View(survey);
+        }
+
+
+        [HttpPost]
+        public ActionResult Compila(FormCollection formCollection, int? surveyId)
+        {
+            var form = formCollection.AllKeys.ToDictionary(k => k, v => formCollection[v]);
+
+            return RedirectToAction("Success");
+        }
+
+
+        public ActionResult Success()
+        {
+            return View();
         }
     }
 }

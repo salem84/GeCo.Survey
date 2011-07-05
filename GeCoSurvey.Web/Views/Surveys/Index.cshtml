@@ -8,11 +8,11 @@
 <ul>
 @foreach (var survey in Model)
 {
-    UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
-    string url = u.Action("Compila", "Surveys", new {id = "1"});
+    //UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
+    //string url = u.Action("Compila", "Surveys", new {id = "1"});
     
     <li>
-    @survey.Id - @survey.Name <a href='@url'>(Compila)</a>
+    @survey.Id - @survey.Name @Html.ActionLink("Compila", "Compila", "Surveys", new { id = 1 }, null);
     </li>
 }
 </ul>

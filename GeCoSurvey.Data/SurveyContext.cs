@@ -35,7 +35,7 @@ namespace GeCoSurvey.Data
         }
     }
 
-    public class SurveyContextInitializer : DropCreateDatabaseAlways<SurveyContext> //DropCreateDatabaseIfModelChanges<SurveyContext>
+    public class SurveyContextInitializer : DropCreateDatabaseIfModelChanges<SurveyContext>
     {
         protected override void Seed(SurveyContext context)
         {
@@ -49,6 +49,7 @@ namespace GeCoSurvey.Data
             var survey = new Survey { Name = "Test", Active = true };
             context.Surveys.Add(survey);
 
+            //---
             var question = new Question { SurveyId = survey.Id, Text="Prima domanda" };
             context.Questions.Add(question);
 
@@ -62,6 +63,21 @@ namespace GeCoSurvey.Data
             question.Children = subQuestions;
 
             context.Questions.Add(question);
+
+            //--
+            var question2 = new Question { SurveyId = survey.Id, Text = "Seconda domanda" };
+            context.Questions.Add(question);
+
+            var subQuestions2 = new List<SubQuestion>{
+                new SubQuestion{QuestionId = question2.Id, Text = "Grande"},
+                new SubQuestion{QuestionId = question2.Id, Text = "Cosìcosì"},
+                new SubQuestion{QuestionId = question2.Id, Text = "Piccolo"},
+                new SubQuestion{QuestionId = question2.Id, Text = "Non ci sta"},
+            };
+
+            question2.Children = subQuestions2;
+
+            context.Questions.Add(question2);
         }
     }
 }
