@@ -12,8 +12,10 @@ namespace GeCoSurvey.Domain
         //Da mod per utilizzare classe User
         public string User { get; set; }
 
-        //public virtual Survey Survey { get; set; }
-        //public int SurveyId { get; set; }
+        public virtual Survey Survey { get; set; }
+        public int SurveyId { get; set; }
+
+        public virtual ICollection<Answer> Risposte { get; set; }
 
     }
 }

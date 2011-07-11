@@ -8,7 +8,7 @@ using System.Data;
 
 namespace GeCoSurvey.Data
 {
-    public class SurveyRepository : RepositoryBase<Survey>, ISurveyRepository
+    public class SurveyRepository : RepositoryBase<Survey>//, ISurveyRepository
     {
         public SurveyRepository(IDatabaseFactory databaseFactory)
             : base(databaseFactory)
@@ -18,8 +18,8 @@ namespace GeCoSurvey.Data
 
     }
 
-    public interface ISurveyRepository : IRepository<Survey>
+    /*public interface ISurveyRepository : IRepository<Survey>
     {
                
-    }
+    }*/
 }

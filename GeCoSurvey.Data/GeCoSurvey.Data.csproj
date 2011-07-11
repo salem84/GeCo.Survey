@@ -54,10 +54,13 @@
     <Compile Include="Infrastructure\PagedResult.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Init\InitializeClientDB.cs" />
+    <Compile Include="Init\SurveyContextInitializer.cs" />
     <Compile Include="Repositories\SurveyRepository.cs" />
     <Compile Include="SurveyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Tipologiche.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,6 +70,9 @@
       <Project>{62C3E7C6-E309-41D1-8ADF-2196FEF64267}</Project>
       <Name>GeCoSurvey.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DatabaseData.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

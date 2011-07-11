@@ -46,14 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Answer.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\SubQuestion.cs" />
-    <Compile Include="Entities\Survey.cs" />
-    <Compile Include="Entities\SurveySession.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="CommonEntities\Anagrafica.cs" />
+    <Compile Include="CommonEntities\Area.cs" />
+    <Compile Include="CommonEntities\BaseIdentityModel.cs" />
+    <Compile Include="CommonEntities\Competenza.cs" />
+    <Compile Include="CommonEntities\ConoscenzaCompetenza.cs" />
+    <Compile Include="CommonEntities\Dipendente.cs" />
+    <Compile Include="CommonEntities\LivelloConoscenza.cs" />
+    <Compile Include="CommonEntities\Parametro.cs" />
+    <Compile Include="CommonEntities\Ruolo.cs" />
+    <Compile Include="CommonEntities\TipologiaCompetenza.cs" />
+    <Compile Include="DBEntities\Answer.cs" />
+    <Compile Include="DBEntities\Log.cs" />
+    <Compile Include="DBEntities\Question.cs" />
+    <Compile Include="DBEntities\Role.cs" />
+    <Compile Include="DBEntities\SubQuestion.cs" />
+    <Compile Include="DBEntities\Survey.cs" />
+    <Compile Include="DBEntities\SurveySession.cs" />
+    <Compile Include="DBEntities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SurveyConRisposte.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

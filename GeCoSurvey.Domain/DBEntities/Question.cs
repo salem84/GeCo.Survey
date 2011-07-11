@@ -18,8 +18,11 @@ namespace GeCoSurvey.Domain
         public virtual Question Parent { get; set; }
         public int? ParentId { get; set; }*/
 
-        public string Text { get; set; }
+        public string Testo { get; set; }
 
         public virtual ICollection<SubQuestion> Children { get; set; }
+        
+        public virtual Competenza Competenza { get; set; }
+        public int CompetenzaId { get; set; }
     }
 }

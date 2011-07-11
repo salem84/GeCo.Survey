@@ -1,0 +1,56 @@
+﻿@model GeCoSurvey.Domain.SurveyWithAnswers
+@{
+    ViewBag.Title = "Revisiona";
+}
+
+<h2>Revisiona</h2>
+@using (Html.BeginForm())
+{
+    //@Html.HiddenFor(model => model.Id);
+
+    @RenderQuestionWithAnswer(Model.DomandeConRisposte);
+
+    <input type="submit" value="Invia" />
+}
+
+
+
+
+@using GeCoSurvey.Domain;
+@using GeCoSurvey.Web.Models;
+@helper RenderQuestionWithAnswer(IEnumerable<QuestionWithAnswer> domande)
+    {
+    foreach (var d in domande)
+    {
+        string testo = d.Question.Testo;
+        string idQuestion = d.Question.Id.ToString();
+        int idRispostaData = d.RispostaDataId;
+        IEnumerable<SubQuestion> subquestions = d.Question.Children;
+        
+
+        <span>@testo</span><br />
+        
+        @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData );
+    }
+}
+
+@helper RenderSubQuestionWithAnswer(string idQuestion, IEnumerable<SubQuestion> subquestions, int idRispostaData)
+    {
+    foreach (var s in subquestions)
+    {
+        string idSubQuestion = s.Id.ToString();
+        string testo = s.Testo;
+        string showAutoVal = "";
+        if (s.Id == idRispostaData)
+        {
+            showAutoVal = "showAutoVal";
+        }
+        
+        
+        <div class="subquestion">
+            <span class="autoval @showAutoVal">&nbsp;</span>
+            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
+        </div>
+        
+    }
+}

@@ -14,6 +14,9 @@ namespace GeCoSurvey.Domain
         public virtual Question Question { get; set; }
         public int? QuestionId { get; set; }
 
-        public string Text { get; set; }
+        public string Testo { get; set; }
+        
+        public virtual LivelloConoscenza LivelloConoscenza { get; set; }
+        public int LivelloConoscenzaId { get; set; }
     }
 }

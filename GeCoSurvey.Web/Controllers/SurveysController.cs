@@ -5,16 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using GeCoSurvey.Service;
 using GeCoSurvey.Domain;
+using GeCoSurvey.Web.Models;
 
 namespace GeCoSurvey.Web.Controllers
 {
     public class SurveysController : Controller
     {
         private readonly ISurveyService surveyService;
+        private readonly IDipendentiService dipendentiService;
 
-        public SurveysController(ISurveyService surveyService)
+        public SurveysController(ISurveyService surveyService,
+            IDipendentiService dipendentiService)
         {
             this.surveyService = surveyService;
+            this.dipendentiService = dipendentiService;
         }
 
         public ActionResult Index()
@@ -38,9 +42,66 @@ namespace GeCoSurvey.Web.Controllers
         {
             var form = formCollection.AllKeys.ToDictionary(k => k, v => formCollection[v]);
 
+            List<Answer> risposte = new List<Answer>();
+            //salva risposte
+            foreach (var coppia in form)
+            {
+                Answer answer = new Answer();
+                string strQuestion = coppia.Key.Substring(1); //salto la c
+                answer.DomandaId = Convert.ToInt32(strQuestion);
+                
+                string strSubQuestion = coppia.Value;
+                answer.RispostaDataId = Convert.ToInt32(strSubQuestion);
+                
+                risposte.Add(answer);
+            }
+
+            surveyService.SalvaSurvey(User.Identity.Name, risposte);
+
+
             return RedirectToAction("Success");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">SurveySessionId</param>
+        /// <returns></returns>
+        public ActionResult Revisiona(int id)
+        {
+            SurveyWithAnswers surveyWithAnswers = surveyService.GetSurveyWithAnswers(id);
+
+            
+            
+
+            return View(surveyWithAnswers);
+        }
+
+        [HttpPost]
+        public ActionResult Revisiona(int id, FormCollection formCollection)
+        {
+            var form = formCollection.AllKeys.ToDictionary(k => k, v => formCollection[v]);
+
+            List<Answer> risposte = new List<Answer>();
+            //salva risposte
+            foreach (var coppia in form)
+            {
+                Answer answer = new Answer();
+                string strQuestion = coppia.Key.Substring(1); //salto la c
+                answer.DomandaId = Convert.ToInt32(strQuestion);
+
+                string strSubQuestion = coppia.Value;
+                answer.RispostaDataId = Convert.ToInt32(strSubQuestion);
+
+                risposte.Add(answer);
+            }
+
+            surveyService.SalvaSurveyRevisionato(id, risposte);
+
+
+
+            return RedirectToAction("Success");
+        }
 
         public ActionResult Success()
         {

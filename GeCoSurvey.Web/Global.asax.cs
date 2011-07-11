@@ -41,6 +41,7 @@ namespace GeCoSurvey.Web
 
             //Inizializzazione DB
             Database.SetInitializer(new SurveyContextInitializer());
+            //Database.SetInitializer<SurveyContext>(null);
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
@@ -64,9 +65,10 @@ namespace GeCoSurvey.Web
             //.RegisterType<IExpenseRepository, ExpenseRepository>(new HttpContextLifetimeManager<IExpenseRepository>())
             //.RegisterType<ICategoryService, CategoryService>(new HttpContextLifetimeManager<ICategoryService>())
             //.RegisterType<IExpenseService, ExpenseService>(new HttpContextLifetimeManager<IExpenseService>())
+            .RegisterType<IDipendentiService, DipendentiService>(new HttpContextLifetimeManager<IDipendentiService>())
             .RegisterType<ISurveyService, SurveyService>(new HttpContextLifetimeManager<ISurveyService>())
-            //.RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>))
-            .RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
+            .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>))
+            //.RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
             .RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>())
             //.RegisterType<IRoleRepository, RoleRepository>(new HttpContextLifetimeManager<IRoleRepository>())
             .RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());

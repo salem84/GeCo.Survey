@@ -322,3 +322,17 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+
+/* Stili per il questionario 
+----------------------------------------------------------*/
+.autoval
+{
+    width:10px;
+    height:10px;
+}
+
+.showAutoVal
+{
+    background-color:Red;
+}

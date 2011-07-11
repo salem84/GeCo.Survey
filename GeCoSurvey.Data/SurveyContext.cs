@@ -4,80 +4,90 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using GeCoSurvey.Domain;
+using System.Data.Entity.Infrastructure;
 
 namespace GeCoSurvey.Data
 {
     public class SurveyContext : DbContext
     {
-       // public MyFinanceContext() : base("MyFinance") { }
+        // public MyFinanceContext() : base("MyFinance") { }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Dipendente> Dipendenti { get; set; }
+        public DbSet<Ruolo> Ruoli { get; set; }
+        public DbSet<Competenza> Competenze { get; set; }
+        //public DbSet<Area> Aree { get; set; }
+        public DbSet<LivelloConoscenza> LivelliConoscenza { get; set; }
+        public DbSet<TipologiaCompetenza> TipologieCompetenze { get; set; }
+        public DbSet<ConoscenzaCompetenza> ConoscenzaCompetenze { get; set; }
+        public DbSet<Parametro> Parametri { get; set; }
+
+
+
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<SurveySession> Sessions { get; set; }
 
+
+        
         public virtual void Commit()
         {
             base.SaveChanges();
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-             modelBuilder.Entity<User>()
-            .HasMany(u => u.Roles)
-            .WithMany(r => r.Users)
-            .Map(m =>
-            {
-                m.ToTable("RoleMemberships");
-                m.MapLeftKey("UserName");
-                m.MapRightKey("RoleName");
-            });
-        }
-    }
+            //modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
 
-    public class SurveyContextInitializer : DropCreateDatabaseIfModelChanges<SurveyContext>
-    {
-        protected override void Seed(SurveyContext context)
+            CreaModelloComune(modelBuilder);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Roles)
+                .WithMany(r => r.Users)
+                .Map(m =>
+                {
+                    m.ToTable("RoleMemberships");
+                    m.MapLeftKey("UserName");
+                    m.MapRightKey("RoleName");
+                });
+
+            modelBuilder.Entity<SurveySession>()
+                .HasRequired(session => session.Survey)
+                .WithMany(survey => survey.SurveySessions)
+                .WillCascadeOnDelete(false);
+        }
+
+        private void CreaModelloComune(DbModelBuilder modelBuilder)
         {
-            var roles = new List<Role>{
-                new Role{RoleName = "Administrator"},
-                new Role{RoleName = "User"}               
-            };
+            modelBuilder.ComplexType<Area>();
 
-            roles.ForEach(r => context.Roles.Add(r));
+            modelBuilder.Entity<Competenza>()
+                .Map(m => m.ToTable("Competenze"));
 
-            var survey = new Survey { Name = "Test", Active = true };
-            context.Surveys.Add(survey);
+            modelBuilder.Entity<ConoscenzaCompetenza>()
+                .Map(m => m.ToTable("ConoscenzeCompetenza"));
+            //.HasRequired(m => m.Dotato).WithRequiredPrincipal().WillCascadeOnDelete();
 
-            //---
-            var question = new Question { SurveyId = survey.Id, Text="Prima domanda" };
-            context.Questions.Add(question);
 
-            var subQuestions = new List<SubQuestion>{
-                new SubQuestion{QuestionId = question.Id, Text = "Alto"},
-                new SubQuestion{QuestionId = question.Id, Text = "Medio"},
-                new SubQuestion{QuestionId = question.Id, Text = "Basso"},
-                new SubQuestion{QuestionId = question.Id, Text = "Nullo"},
-            };
+            /*modelBuilder.Entity<Ruolo>()
+                .Map(m =>m.ToTable("Ruoli"));*/
 
-            question.Children = subQuestions;
 
-            context.Questions.Add(question);
+            modelBuilder.Entity<LivelloConoscenza>()
+                .Map(m => m.ToTable("LivelliConoscenza"));
 
-            //--
-            var question2 = new Question { SurveyId = survey.Id, Text = "Seconda domanda" };
-            context.Questions.Add(question);
 
-            var subQuestions2 = new List<SubQuestion>{
-                new SubQuestion{QuestionId = question2.Id, Text = "Grande"},
-                new SubQuestion{QuestionId = question2.Id, Text = "Cosìcosì"},
-                new SubQuestion{QuestionId = question2.Id, Text = "Piccolo"},
-                new SubQuestion{QuestionId = question2.Id, Text = "Non ci sta"},
-            };
+            modelBuilder.Entity<TipologiaCompetenza>()
+                .Map(m => m.ToTable("TipologieCompetenza"));
 
-            question2.Children = subQuestions2;
 
-            context.Questions.Add(question2);
+            modelBuilder.Entity<Parametro>()
+                .HasKey(m => m.Nome)
+                .Map(m => m.ToTable("Parametri"));
         }
     }
+
+    
+    
 }

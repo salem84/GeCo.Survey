@@ -12,5 +12,8 @@ namespace GeCoSurvey.Domain
         public bool Active { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
+
+        //Proprietà inversa
+        public virtual ICollection<SurveySession> SurveySessions { get; set; }
     }
 }

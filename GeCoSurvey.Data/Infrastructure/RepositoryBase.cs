@@ -9,11 +9,11 @@ using System.Linq.Expressions;
 
 namespace GeCoSurvey.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepository<T> where T : class
     {
         private SurveyContext dataContext;
         private readonly IDbSet<T> dbset;
-        protected RepositoryBase(IDatabaseFactory databaseFactory)
+        public RepositoryBase(IDatabaseFactory databaseFactory)
         {
             DatabaseFactory = databaseFactory;
             dbset = DataContext.Set<T>();

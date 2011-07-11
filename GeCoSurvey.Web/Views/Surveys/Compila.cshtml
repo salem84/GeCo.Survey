@@ -21,7 +21,7 @@
     {
     foreach (var d in domande)
     {
-        string testo = d.Text;
+        string testo = d.Testo;
         string idQuestion = d.Id.ToString();
         IEnumerable<SubQuestion> subquestions = d.Children;
 
@@ -36,7 +36,7 @@
     foreach (var s in subquestions)
     {
         string idSubQuestion = s.Id.ToString();
-        string testo = s.Text;
+        string testo = s.Testo;
         <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
     }
 }
