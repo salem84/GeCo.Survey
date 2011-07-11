@@ -29,6 +29,7 @@ namespace GeCoSurvey.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<SurveySession> Sessions { get; set; }
+        public DbSet<ResponsabiliDipendenti> ResponsabiliDipendenti { get; set; }
 
 
         

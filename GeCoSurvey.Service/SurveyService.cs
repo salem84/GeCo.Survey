@@ -20,7 +20,9 @@ namespace GeCoSurvey.Service
         void SalvaSurvey(string username, List<Answer> risposte);
         void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte);
 
-        
+
+
+        IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile);
     }
 
     public class SurveyService : ISurveyService
@@ -29,6 +31,7 @@ namespace GeCoSurvey.Service
         //private readonly IRepository<Answer> reposAnswer;
         private readonly IRepository<SurveySession> reposSurveySession;
         private readonly IRepository<SubQuestion> reposSubQuestion;
+        private readonly IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti;
         private readonly DipendentiService dipendentiService;
 
         private readonly UnitOfWork unityOfWork;
@@ -36,6 +39,7 @@ namespace GeCoSurvey.Service
         public SurveyService(IRepository<Survey> reposSurvey,
             IRepository<SurveySession> reposSurveySession,
             IRepository<SubQuestion> reposSubQuestion,
+            IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti,
             DipendentiService dipendentiService,
             UnitOfWork unityOfWork)
         {
@@ -155,6 +159,16 @@ namespace GeCoSurvey.Service
             };
 
             return surveyWithAnswers;
+        }
+
+
+        public IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile)
+        {
+            IEnumerable<string> dipendenti = reposResponsabiliDipendenti.GetMany(r => r.Responsabile == responsabile).Select(r => r.Dipendente);
+
+            var sessions = reposSurveySession.GetMany(ss => dipendenti.Contains(ss.User));
+
+            return sessions;
         }
     }
 }

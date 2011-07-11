@@ -107,5 +107,16 @@ namespace GeCoSurvey.Web.Controllers
         {
             return View();
         }
+
+
+
+        public ActionResult Visualizza()
+        {
+            string responsabile = User.Identity.Name;
+
+            var result = surveyService.GetSurveySessionsByResponsabile(responsabile);
+
+            return View(result);
+        }
     }
 }

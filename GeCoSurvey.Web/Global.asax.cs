@@ -56,22 +56,22 @@ namespace GeCoSurvey.Web
             //Crea UnityContainer          
             IUnityContainer container = new UnityContainer()
                 //.RegisterType<IControllerActivator, CustomControllerActivator>() // Non serve
-            //.RegisterType<IFormsAuthenticationService, FormsAuthenticationService>()
-            //.RegisterType<IMembershipService, AccountMembershipService>()
-            //.RegisterInstance<MembershipProvider>(Membership.Provider)
+                //.RegisterType<IFormsAuthenticationService, FormsAuthenticationService>()
+                //.RegisterType<IMembershipService, AccountMembershipService>()
+                //.RegisterInstance<MembershipProvider>(Membership.Provider)
             .RegisterType<IDatabaseFactory, DatabaseFactory>(new HttpContextLifetimeManager<IDatabaseFactory>())
             .RegisterType<IUnitOfWork, UnitOfWork>(new HttpContextLifetimeManager<IUnitOfWork>())
-            //.RegisterType<ICategoryRepository, CategoryRepository>(new HttpContextLifetimeManager<ICategoryRepository>())
-            //.RegisterType<IExpenseRepository, ExpenseRepository>(new HttpContextLifetimeManager<IExpenseRepository>())
-            //.RegisterType<ICategoryService, CategoryService>(new HttpContextLifetimeManager<ICategoryService>())
-            //.RegisterType<IExpenseService, ExpenseService>(new HttpContextLifetimeManager<IExpenseService>())
+                //.RegisterType<ICategoryRepository, CategoryRepository>(new HttpContextLifetimeManager<ICategoryRepository>())
+                //.RegisterType<IExpenseRepository, ExpenseRepository>(new HttpContextLifetimeManager<IExpenseRepository>())
+                //.RegisterType<ICategoryService, CategoryService>(new HttpContextLifetimeManager<ICategoryService>())
+                //.RegisterType<IExpenseService, ExpenseService>(new HttpContextLifetimeManager<IExpenseService>())
             .RegisterType<IDipendentiService, DipendentiService>(new HttpContextLifetimeManager<IDipendentiService>())
             .RegisterType<ISurveyService, SurveyService>(new HttpContextLifetimeManager<ISurveyService>())
-            .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>))
-            //.RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
-            .RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>())
+            .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>));
+                //.RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
+            //.RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>());
             //.RegisterType<IRoleRepository, RoleRepository>(new HttpContextLifetimeManager<IRoleRepository>())
-            .RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());
+            //.RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());
             return container;
         }
     }

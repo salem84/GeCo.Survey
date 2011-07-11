@@ -11,6 +11,8 @@ namespace GeCoSurvey.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly string ROLE_PRIMO_ACCESSO = "PrimoAccesso";
+
 
         //
         // GET: /Account/LogOn
@@ -31,6 +33,12 @@ namespace GeCoSurvey.Web.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+
+                    if (Roles.IsUserInRole(model.UserName, ROLE_PRIMO_ACCESSO))
+                    {
+                        return RedirectToAction("ChangePassword", "Account");
+                    }
+                    
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -122,6 +130,9 @@ namespace GeCoSurvey.Web.Controllers
                 {
                     MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
                     changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+
+                    //Elimino il ruolo PrimoAccesso
+                    Roles.RemoveUserFromRole(currentUser.UserName, ROLE_PRIMO_ACCESSO);
                 }
                 catch (Exception)
                 {
