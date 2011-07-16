@@ -71,9 +71,9 @@ namespace GeCoSurvey.Data
 
 
 
-            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d1", Responsabile = "r1" });
+            /*context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d1", Responsabile = "r1" });
             context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d2", Responsabile = "r1" });
-            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d3", Responsabile = "r1" });
+            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d3", Responsabile = "r1" });*/
 
             context.SaveChanges();
         }

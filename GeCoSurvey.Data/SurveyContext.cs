@@ -29,7 +29,7 @@ namespace GeCoSurvey.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<SurveySession> Sessions { get; set; }
-        public DbSet<ResponsabiliDipendenti> ResponsabiliDipendenti { get; set; }
+        //public DbSet<ResponsabiliDipendenti> ResponsabiliDipendenti { get; set; }
 
 
         
@@ -58,8 +58,8 @@ namespace GeCoSurvey.Data
                 .WithMany(survey => survey.SurveySessions)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ResponsabiliDipendenti>()
-                .HasKey(e => new { e.Responsabile, e.Dipendente });
+            /*modelBuilder.Entity<ResponsabiliDipendenti>()
+                .HasKey(e => new { e.Responsabile, e.Dipendente });*/
         }
 
         private void CreaModelloComune(DbModelBuilder modelBuilder)

@@ -67,11 +67,14 @@ namespace GeCoSurvey.Web
                 //.RegisterType<IExpenseService, ExpenseService>(new HttpContextLifetimeManager<IExpenseService>())
             .RegisterType<IDipendentiService, DipendentiService>(new HttpContextLifetimeManager<IDipendentiService>())
             .RegisterType<ISurveyService, SurveyService>(new HttpContextLifetimeManager<ISurveyService>())
+            .RegisterType<IUserService, UserService>(new HttpContextLifetimeManager<IUserService>())
             .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>));
                 //.RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
             //.RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>());
             //.RegisterType<IRoleRepository, RoleRepository>(new HttpContextLifetimeManager<IRoleRepository>())
             //.RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());
+
+            
             return container;
         }
     }

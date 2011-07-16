@@ -29,24 +29,28 @@ namespace GeCoSurvey.Service
         //private readonly IRepository<Answer> reposAnswer;
         private readonly IRepository<SurveySession> reposSurveySession;
         private readonly IRepository<SubQuestion> reposSubQuestion;
-        private readonly IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti;
-        private readonly DipendentiService dipendentiService;
+        //private readonly IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti;
+        private readonly IDipendentiService dipendentiService;
+        private readonly IUserService userService;
 
         private readonly UnitOfWork unityOfWork;
 
         public SurveyService(IRepository<Survey> reposSurvey,
             IRepository<SurveySession> reposSurveySession,
             IRepository<SubQuestion> reposSubQuestion,
-            IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti,
-            DipendentiService dipendentiService,
+            //IRepository<ResponsabiliDipendenti> reposResponsabiliDipendenti,
+            IDipendentiService dipendentiService,
+            IUserService userService,
             UnitOfWork unityOfWork)
         {
             this.reposSurvey = reposSurvey;
             //this.reposAnswer = reposAnswer;
             this.reposSurveySession = reposSurveySession;
             this.reposSubQuestion = reposSubQuestion;
-            this.reposResponsabiliDipendenti = reposResponsabiliDipendenti;
+            //this.reposResponsabiliDipendenti = reposResponsabiliDipendenti;
+            this.userService = userService;
             this.unityOfWork = unityOfWork;
+
 
             this.dipendentiService = dipendentiService;
         }
@@ -113,9 +117,15 @@ namespace GeCoSurvey.Service
                 Matricola = "112",
                 DataNascita = DateTime.Parse("25/01/1984"),
             };
+            
+
 
             //List<LivelloConoscenza> livelli = dipendentiService.GetLivelliConoscenza();
             var session = GetSurveySession(idSurveySession);
+            
+            //Leggo le informazioni dell'utente
+            userService.GetUtente(session.User);
+            
             var domande = session.Survey.Questions;
 
             foreach (var r in risposte)
@@ -172,7 +182,7 @@ namespace GeCoSurvey.Service
         public IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile)
         {
             //Prendo i dipendenti associati al responsabile
-            IEnumerable<string> dipendenti = reposResponsabiliDipendenti.GetMany(r => r.Responsabile == responsabile).Select(r => r.Dipendente);
+            IEnumerable<string> dipendenti = userService.GetDipendentiByResponsabile(responsabile);
 
             //Di questi utenti, alcuni hanno iniziato e/o completato il questionario, quindi avrò gli oggetti SurveySessions
             IEnumerable<SurveySession> sessionsCompletate = reposSurveySession.GetMany(ss => dipendenti.Contains(ss.User));

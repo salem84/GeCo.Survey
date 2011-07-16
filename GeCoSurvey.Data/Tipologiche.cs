@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GeCoSurvey.Data
 {
-    public class Tipologiche
+    public partial class Tipologiche
     {
         /// <summary>
         /// Macrogruppi

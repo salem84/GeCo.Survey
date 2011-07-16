@@ -56,17 +56,16 @@
     <Compile Include="CommonEntities\Parametro.cs" />
     <Compile Include="CommonEntities\Ruolo.cs" />
     <Compile Include="CommonEntities\TipologiaCompetenza.cs" />
-    <Compile Include="DBEntities\Answer.cs" />
-    <Compile Include="DBEntities\Log.cs" />
-    <Compile Include="DBEntities\Question.cs" />
-    <Compile Include="DBEntities\ResponsabiliDipendenti.cs" />
-    <Compile Include="DBEntities\Role.cs">
+    <Compile Include="SurveyEntities\Answer.cs" />
+    <Compile Include="SurveyEntities\Log.cs" />
+    <Compile Include="SurveyEntities\Question.cs" />
+    <Compile Include="SurveyEntities\Role.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DBEntities\SubQuestion.cs" />
-    <Compile Include="DBEntities\Survey.cs" />
-    <Compile Include="DBEntities\SurveySession.cs" />
-    <Compile Include="DBEntities\User.cs" />
+    <Compile Include="SurveyEntities\SubQuestion.cs" />
+    <Compile Include="SurveyEntities\Survey.cs" />
+    <Compile Include="SurveyEntities\SurveySession.cs" />
+    <Compile Include="SurveyEntities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurveyConRisposte.cs" />
   </ItemGroup>

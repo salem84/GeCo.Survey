@@ -8,6 +8,7 @@ using System.IO;
 
 namespace GeCoSurvey.Web.Controllers
 {
+    //[Authorize(Roles="Administrators")]
     public class AdminController : Controller
     {
         private readonly ExcelService excelService;
@@ -28,6 +29,24 @@ namespace GeCoSurvey.Web.Controllers
             return View();
         }
 
+
+        public ActionResult Utenti()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Utenti(FormCollection collection)
+        {
+            string username = collection["nome"];
+            string area = collection["area"];
+
+            UserProfile profile = userService.GetUtente(username);
+            profile.Area = area;
+            profile.Save();
+
+            return View();
+        }
 
 
         [HttpGet]
@@ -51,9 +70,6 @@ namespace GeCoSurvey.Web.Controllers
         [HttpGet]
         public ActionResult CaricaUtenti()
         {
-            
-            
-
             return View();
         }
 
@@ -72,15 +88,15 @@ namespace GeCoSurvey.Web.Controllers
 
                         string username = properties[0];
                         //utilizzo questo ma probabilmente andrà cambiato
-                        UserProfile profile = new UserProfile
-                        {
-                            Matricola = properties[1],
-                            Nome = properties[2],
-                            Cognome = properties[3],
-                            Area = properties[4]
-                        };
+                        Dictionary<string, string> profile = new Dictionary<string, string>();
 
-                        userService.CreaUtente(username, username + "@pavimental.fake", profile, true);
+                        profile.Add("Email", username + "@pavimental.fake");
+                        profile.Add("Matricola", properties[1]);
+                        profile.Add("Nome", properties[2]);
+                        profile.Add("Cognome", properties[3]);
+                        profile.Add("Area", properties[4]);
+                        
+                        userService.CreaUtente(username, profile, true);
                     }
                 }
                 
