@@ -69,6 +69,12 @@ namespace GeCoSurvey.Data
 
             context.Questions.Add(question2);
 
+
+
+            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d1", Responsabile = "r1" });
+            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d2", Responsabile = "r1" });
+            context.ResponsabiliDipendenti.Add(new ResponsabiliDipendenti { Dipendente = "d3", Responsabile = "r1" });
+
             context.SaveChanges();
         }
     }

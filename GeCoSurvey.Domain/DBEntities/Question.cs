@@ -24,5 +24,10 @@ namespace GeCoSurvey.Domain
         
         public virtual Competenza Competenza { get; set; }
         public int CompetenzaId { get; set; }
+
+        public Question()
+        {
+            Children = new List<SubQuestion>();
+        }
     }
 }

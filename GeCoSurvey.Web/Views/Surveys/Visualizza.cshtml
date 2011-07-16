@@ -1,7 +1,23 @@
-﻿@{
+﻿@model IEnumerable<GeCoSurvey.Domain.SurveySession>
+@{
     ViewBag.Title = "Visualizza";
 }
 
-<h2>Visualizza</h2>
+<h2>Stato Questionari di competenza</h2>
 
+<ul>
+@foreach (var ss in Model)
+{ 
+    <li>
+    <span><b>Utente: </b>@ss.User </span>
+    <span><b>Stato: </b>@(ss.Completato ? "Completato" : "Non completato")</span>
+    
+    @if (ss.Completato)
+    {
+        Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = ss.Id }, null);
+    }
+    </li>
+    
+}
 
+</ul>

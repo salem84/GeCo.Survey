@@ -30,6 +30,7 @@ namespace GeCoSurvey.Web.Controllers
             return View(surveys);
         }
 
+        [Authorize(Roles = "Dipendenti")]
         public ActionResult Compila(int id)
         {
             var survey = surveyService.GetSurvey(id);
@@ -67,14 +68,21 @@ namespace GeCoSurvey.Web.Controllers
         /// </summary>
         /// <param name="id">SurveySessionId</param>
         /// <returns></returns>
+        [Authorize(Roles="Responsabili")]
         public ActionResult Revisiona(int id)
         {
             SurveyWithAnswers surveyWithAnswers = surveyService.GetSurveyWithAnswers(id);
 
-            
-            
+            if (surveyWithAnswers != null)
+            {
+                return View(surveyWithAnswers);
+            }
+            else
+            {
+                throw new Exception("Survey Session non trovata");
+            }
 
-            return View(surveyWithAnswers);
+            
         }
 
         [HttpPost]
@@ -109,7 +117,7 @@ namespace GeCoSurvey.Web.Controllers
         }
 
 
-
+        [Authorize(Roles="Responsabili")]
         public ActionResult Visualizza()
         {
             string responsabile = User.Identity.Name;

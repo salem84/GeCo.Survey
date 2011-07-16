@@ -20,8 +20,6 @@ namespace GeCoSurvey.Service
         void SalvaSurvey(string username, List<Answer> risposte);
         void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte);
 
-
-
         IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile);
     }
 
@@ -47,6 +45,7 @@ namespace GeCoSurvey.Service
             //this.reposAnswer = reposAnswer;
             this.reposSurveySession = reposSurveySession;
             this.reposSubQuestion = reposSubQuestion;
+            this.reposResponsabiliDipendenti = reposResponsabiliDipendenti;
             this.unityOfWork = unityOfWork;
 
             this.dipendentiService = dipendentiService;
@@ -141,32 +140,55 @@ namespace GeCoSurvey.Service
         {
             SurveySession surveySession = GetSurveySession(idSurveySession);
 
-            Survey survey = surveySession.Survey;
-            List<Answer> risposte = surveySession.Risposte.ToList();
-
-            var qWr = from q in survey.Questions
-                      let risposta = risposte.Single(r => r.DomandaId == q.Id)
-                      select new QuestionWithAnswer
-                      {
-                          RispostaDataId = risposta.RispostaDataId,
-                          Question = q
-                      };
-
-            SurveyWithAnswers surveyWithAnswers = new SurveyWithAnswers
+            if (surveySession != null)
             {
-                SurveySession = surveySession,
-                DomandeConRisposte = qWr.ToList()
-            };
 
-            return surveyWithAnswers;
+                Survey survey = surveySession.Survey;
+                List<Answer> risposte = surveySession.Risposte.ToList();
+
+                var qWr = from q in survey.Questions
+                          let risposta = risposte.Single(r => r.DomandaId == q.Id)
+                          select new QuestionWithAnswer
+                          {
+                              RispostaDataId = risposta.RispostaDataId,
+                              Question = q
+                          };
+
+                SurveyWithAnswers surveyWithAnswers = new SurveyWithAnswers
+                {
+                    SurveySession = surveySession,
+                    DomandeConRisposte = qWr.ToList()
+                };
+
+                return surveyWithAnswers;
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
         public IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile)
         {
+            //Prendo i dipendenti associati al responsabile
             IEnumerable<string> dipendenti = reposResponsabiliDipendenti.GetMany(r => r.Responsabile == responsabile).Select(r => r.Dipendente);
 
-            var sessions = reposSurveySession.GetMany(ss => dipendenti.Contains(ss.User));
+            //Di questi utenti, alcuni hanno iniziato e/o completato il questionario, quindi avrò gli oggetti SurveySessions
+            IEnumerable<SurveySession> sessionsCompletate = reposSurveySession.GetMany(ss => dipendenti.Contains(ss.User));
+            IEnumerable<string> utentiConQuestionario = sessionsCompletate.Where(s => s.Completato == true).Select(s => s.User);
+
+            //Altri non hanno ancora fatto nulla
+            IEnumerable<string> utentiSenzaQuestionario = dipendenti.Except(utentiConQuestionario);
+            //Creo quindi delle sessions fittizie per la View
+            var sessionsNonCompletate = from d in utentiSenzaQuestionario
+                                        select new SurveySession
+                                        {
+                                            User = d,
+
+                                        };
+            //Faccio l'unione di tutto
+            var sessions = sessionsCompletate.Union(sessionsNonCompletate);
 
             return sessions;
         }

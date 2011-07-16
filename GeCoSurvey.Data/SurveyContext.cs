@@ -57,6 +57,9 @@ namespace GeCoSurvey.Data
                 .HasRequired(session => session.Survey)
                 .WithMany(survey => survey.SurveySessions)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ResponsabiliDipendenti>()
+                .HasKey(e => new { e.Responsabile, e.Dipendente });
         }
 
         private void CreaModelloComune(DbModelBuilder modelBuilder)

@@ -13,11 +13,9 @@ namespace GeCoSurvey.Domain
         public string Cognome { get; set; }
         public DateTime? DataNascita { get; set; }
         public string Matricola { get; set; }
-        
-        //public int IndiceTotale
-        //{
-        //    get { return this.Conoscenze.Sum(c => c.Indice); }
-        //}
+
+        public virtual Ruolo RuoloInAzienda { get; set; }
+        public int RuoloInAziendaId { get; set; }
 
         public Dipendente()
         {

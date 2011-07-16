@@ -15,5 +15,10 @@ namespace GeCoSurvey.Domain
 
         //Proprietà inversa
         public virtual ICollection<SurveySession> SurveySessions { get; set; }
+
+        public Survey()
+        {
+            Questions = new List<Question>();
+        }
     }
 }

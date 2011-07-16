@@ -9,13 +9,23 @@ namespace GeCoSurvey.Domain
     {
         public int Id { get; set; }
 
-        //Da mod per utilizzare classe User
         public string User { get; set; }
 
         public virtual Survey Survey { get; set; }
         public int SurveyId { get; set; }
 
         public virtual ICollection<Answer> Risposte { get; set; }
+
+        public bool Completato
+        {
+            get { return Risposte.Count() == 0 ? false : true; }
+        }
+
+        public SurveySession()
+        {
+            Risposte = new List<Answer>();
+        }
+
 
     }
 }

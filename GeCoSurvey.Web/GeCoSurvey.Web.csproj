@@ -79,6 +79,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AuthorizationExtensions.cs" />
+    <Compile Include="Helpers\ExpressionHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\LinkExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IoC\CustomControllerActivator.cs" />
     <Compile Include="IoC\UnityControllerFactory .cs" />
     <Compile Include="IoC\UnityDependencyResolver.cs" />
@@ -191,6 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Surveys\Visualizza.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\CaricaSurvey.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
