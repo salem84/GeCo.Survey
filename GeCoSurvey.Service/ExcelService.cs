@@ -7,6 +7,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using System.Text.RegularExpressions;
 using GeCoSurvey.Domain;
 using GeCoSurvey.Data.Infrastructure;
+using System.IO;
 
 namespace GeCoSurvey.Service
 {
@@ -29,10 +30,10 @@ namespace GeCoSurvey.Service
         }
 
 
-        public bool CaricaSurvey()
+        public bool CaricaSurvey(Stream stream)
         {
-            string filepath = "D:\\survey1.xlsx";
-            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filepath, false))
+            //string filepath = "D:\\survey1.xlsx";
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(stream, false))
             {
                 IEnumerable<Sheet> sheets = spreadsheetDocument.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == "Autovalutazione");
                 if (sheets.Count() == 0)

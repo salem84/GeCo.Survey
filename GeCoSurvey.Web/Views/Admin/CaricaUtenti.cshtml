@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "CaricaUtenti";
+}
+
+<h2>CaricaUtenti</h2>
+
+@using (Html.BeginForm("CaricaUtenti", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <span>Seleziona il file </span><br />
+    <input type="file" name="file" id="file" />
+    <input type="submit" value="submit" />
+}

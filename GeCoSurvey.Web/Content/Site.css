@@ -336,3 +336,13 @@ div#title {
 {
     background-color:Red;
 }
+
+.question
+{
+    font-weight:bold
+}
+
+.subquestion
+{
+    margin-bottom:10px;
+}

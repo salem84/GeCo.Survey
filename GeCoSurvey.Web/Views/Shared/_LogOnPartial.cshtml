@@ -1,7 +1,19 @@
 ﻿@if(Request.IsAuthenticated) {
     <text>Welcome <strong>@User.Identity.Name</strong>!
+    <br />
+    @GetProfileInfo()
     [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
 }
 else {
     @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+}
+
+
+@helper GetProfileInfo()
+{
+    string matricola = Context.Profile.GetPropertyValue("Matricola").ToString();
+    string nome = Context.Profile.GetPropertyValue("Nome").ToString();
+    string area = Context.Profile.GetPropertyValue("Area").ToString();
+    
+    <span>#@matricola : @nome [@area] </span>
 }

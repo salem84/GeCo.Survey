@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<GeCoSurvey.Domain.Survey>
+@{
     ViewBag.Title = "Surveys";
 }
 
@@ -12,7 +13,7 @@
     //string url = u.Action("Compila", "Surveys", new {id = "1"});
     
     <li>
-    @survey.Id - @survey.Name @Html.ActionLink("Compila", "Compila", "Surveys", new { id = 1 }, null);
+    @survey.Id - @survey.Name @Html.ActionLink("Compila", "Compila", "Surveys", new { id = survey.Id }, null);
     </li>
 }
 </ul>

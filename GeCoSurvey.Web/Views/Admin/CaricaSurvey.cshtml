@@ -3,3 +3,10 @@
 }
 
 <h2>CaricaQuestionario</h2>
+
+@using (Html.BeginForm("CaricaSurvey", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <span>Seleziona il file Excel (formato xlsx - Excel 2007-2010)</span><br />
+    <input type="file" name="file" id="file" />
+    <input type="submit" value="submit" />
+}

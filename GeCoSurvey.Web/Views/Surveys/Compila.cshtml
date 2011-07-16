@@ -9,8 +9,10 @@
 {
     //@Html.HiddenFor(model => model.Id);
 
-    @RenderQuestion(Model.Questions);
-
+    <ol class="questionario">
+        @RenderQuestion(Model.Questions)
+    </ol>
+    
     <input type="submit" value="Invia" />
 }
 
@@ -24,10 +26,13 @@
         string testo = d.Testo;
         string idQuestion = d.Id.ToString();
         IEnumerable<SubQuestion> subquestions = d.Children;
-
-        <span>@testo</span><br />
         
-        @RenderSubQuestion(idQuestion, subquestions);
+        <li>
+            <h3 class="question">@testo</h3>
+        
+            @RenderSubQuestion(idQuestion, subquestions)
+
+        </li>
     }
 }
 
@@ -37,6 +42,9 @@
     {
         string idSubQuestion = s.Id.ToString();
         string testo = s.Testo;
-        <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
+        <span class="subquestion">
+            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
+        </span>
+        
     }
 }
