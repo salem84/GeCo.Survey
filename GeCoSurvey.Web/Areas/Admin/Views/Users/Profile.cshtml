@@ -1,0 +1,31 @@
+﻿@model GeCoSurvey.Web.Areas.Admin.Models.Users.ProfileViewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profiles</h2>
+
+@using(Html.BeginForm("Profile", "Users", new{ id = Model.Username })){
+	<fieldset>
+        <p>
+			<label for="matricola">Matricola:</label>
+			@Html.TextBox("Matricola", Model.Matricola)
+		</p>
+		<p>
+			<label for="email">Nome:</label>
+			@Html.TextBox("Nome", Model.Nome)
+		</p>
+		<p>
+			<label for="cognome">Cognome:</label>
+			@Html.TextArea("Cognome", Model.Cognome)
+		</p>
+        <p>
+			<label for="area">Area:</label>
+			@Html.TextBox("Area", Model.Area)
+		</p>
+
+
+		<input type="submit" value="Salva" />
+	</fieldset>
+	}

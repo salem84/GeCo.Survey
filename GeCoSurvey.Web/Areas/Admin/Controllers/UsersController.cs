@@ -8,11 +8,11 @@ using MvcMembership.Settings;
 using Microsoft.Practices.Unity;
 using System.Net.Mail;
 using System.Web.Security;
-using GeCoSurvey.Web.Areas.Admin.Models.User;
+using GeCoSurvey.Web.Areas.Admin.Models.Users;
 
 namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         //
         // GET: /Prova/UserAdministration/
@@ -28,17 +28,17 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         private readonly IPasswordService _passwordService;
 
         [InjectionConstructor]
-        public UserController()
+        public UsersController()
             : this(new AspNetMembershipProviderWrapper(), new AspNetRoleProviderWrapper(), new SmtpClientProxy())
         {
         }
 
-        public UserController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
+        public UsersController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
             : this(membership.Settings, membership, membership, roles, smtp)
         {
         }
 
-        public UserController(
+        public UsersController(
             IMembershipSettings membershipSettings,
             IUserService userService,
             IPasswordService passwordService,
@@ -273,6 +273,21 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
             _rolesService.RemoveFromRole(_userService.Get(id), role);
             return RedirectToAction("UsersRoles", new { id });
         }
+
+
+        #region PROFILO
+        [HttpGet]
+        public ActionResult Profile(string id)
+        {
+            //GetUtente(string username)
+            ProfileViewModel profileVM = new ProfileViewModel();
+            profileVM.Nome = id;
+            //Popolo ProfileViewModel
+
+            return View(profileVM);
+        }
+
+        #endregion
 
     }
 }

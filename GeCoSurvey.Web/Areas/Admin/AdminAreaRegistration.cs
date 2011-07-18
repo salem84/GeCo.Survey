@@ -2,21 +2,21 @@
 
 namespace GeCoSurvey.Web.Areas.Admin
 {
-    public class ProvaAreaRegistration : AreaRegistration
+    public class AdminAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Prova";
+                return "Admin";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Prova_default",
-                "Prova/{controller}/{action}/{id}",
+                "Admin_default",
+                "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

@@ -1,4 +1,4 @@
-﻿@model GeCoSurvey.Web.Areas.Admin.Models.User.CreateUserViewModel
+﻿@model GeCoSurvey.Web.Areas.Admin.Models.Users.CreateUserViewModel
 @{
 	ViewBag.Title = "Create New User";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,10 +6,10 @@
 
 <link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
 
-<h2 class="mvcMembership">Create New User</h2>
+<h2 class="mvcMembership">Crea nuovo utente</h2>
 
 <div class="mvcMembership-account">
-	@using(Html.BeginForm("CreateUser", "UserAdministration")){ 
+	@using(Html.BeginForm("CreateUser", "Users")){ 
 		@Html.ValidationSummary(true)
 	 	@Html.EditorForModel()
 		<input type="submit" value="Create" />

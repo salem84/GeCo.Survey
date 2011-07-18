@@ -1,5 +1,5 @@
 @using PagedList.Mvc
-@model GeCoSurvey.Web.Areas.Admin.Models.User.IndexViewModel
+@model GeCoSurvey.Web.Areas.Admin.Models.Users.IndexViewModel
 @{
 	ViewBag.Title = "User Administration";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,9 +8,9 @@
 <link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
 <link href='@Url.Content("~/Content/PagedList.css")' rel="stylesheet" type="text/css" />
 
-<h2 class="mvcMembership">User Administration</h2>
+<h2 class="mvcMembership">Gestione Utenti</h2>
 	
-<h3 class="mvcMembership">Users (@Html.ActionLink("New User", "CreateUser", "UserAdministration"))</h3>
+<h3 class="mvcMembership">Utenti (@Html.ActionLink("Nuovo", "CreateUser", "Users"))</h3>
 <div class="mvcMembership-allUsers">
 @if(Model.Users.Count > 0){
 	<ul class="mvcMembership mvcMembership-users">
@@ -21,21 +21,21 @@
 			@if(user.IsOnline){
 				<span class="mvcMembership-isOnline">Online</span>
 			}else{
-				<span class="mvcMembership-isOffline">Offline for
+				<span class="mvcMembership-isOffline">Offline da
 					@{
 						var offlineSince = (DateTime.Now - user.LastActivityDate);
 						if (offlineSince.TotalSeconds <= 60){
-							<text>1 minute.</text>
+							<text>1 minuto.</text>
 						}else if(offlineSince.TotalMinutes < 60){
-							<text>@Math.Floor(offlineSince.TotalMinutes) minutes.</text>
+							<text>@Math.Floor(offlineSince.TotalMinutes) minuti.</text>
 						}else if (offlineSince.TotalMinutes < 120){
-							<text>1 hour</text>
+							<text>1 ora</text>
 						}else if (offlineSince.TotalHours < 24){
-							<text>@Math.Floor(offlineSince.TotalHours) hours.</text>
+							<text>@Math.Floor(offlineSince.TotalHours) ore.</text>
 						}else if (offlineSince.TotalHours < 48){
-							<text>1 day.</text>
+							<text>1 giorno.</text>
 						}else{
-							<text>@Math.Floor(offlineSince.TotalDays) days.</text>
+							<text>@Math.Floor(offlineSince.TotalDays) giorni.</text>
 						}
 					}
 				</span>
@@ -48,7 +48,7 @@
 	</ul>
 	@Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page }))
 }else{
-	<p>No users have registered.</p>
+	<p>Nessun utente registrato.</p>
 }
 </div>
 
@@ -60,21 +60,21 @@
 			@foreach(var role in Model.Roles){
 			<li>
 				@Html.ActionLink(role, "Role", new{id = role})
-				@using(Html.BeginForm("DeleteRole", "UserAdministration", new{id=role})){
-				<input type="submit" value="Delete" />
+				@using(Html.BeginForm("DeleteRole", "Users", new{id=role})){
+				<input type="submit" value="Elimina" />
 				}
 			</li>
 			}
 		</ul>
 	}else{
-		<p>No roles have been created.</p>
+		<p>Nessuno utente è stato creato</p>
 	}
 
-	@using(Html.BeginForm("CreateRole", "UserAdministration")){
+	@using(Html.BeginForm("CreateRole", "Users")){
 		<fieldset>
-			<label for="id">Role:</label>
+			<label for="id">Ruolo:</label>
 			@Html.TextBox("id")
-			<input type="submit" value="Create Role" />
+			<input type="submit" value="Crea Ruolo" />
 		</fieldset>
 	}
 	</div>

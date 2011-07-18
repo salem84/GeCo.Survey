@@ -88,14 +88,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
-    <Compile Include="Areas\Prova\Controllers\UserController.cs" />
-    <Compile Include="Areas\Prova\Models\UserAdministration\CreateUserViewModel.cs" />
-    <Compile Include="Areas\Prova\Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Areas\Prova\Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Areas\Prova\Models\UserAdministration\RoleViewModel.cs" />
-    <Compile Include="Areas\Prova\ProvaAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\Users\CreateUserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Users\DetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Users\IndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Users\ProfileViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Users\RoleViewModel.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Areas\Prova\Controllers\LoadController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoadController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,7 +190,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\Load\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Load\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -229,41 +230,44 @@
     <Content Include="Views\Surveys\Revisiona.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\Load\Utenti.cshtml" />
+    <Content Include="Areas\Admin\Views\Load\Utenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Surveys\Visualizza.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\Load\CaricaSurvey.cshtml" />
+    <Content Include="Areas\Admin\Views\Load\CaricaSurvey.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\Load\CaricaUtenti.cshtml" />
+    <Content Include="Areas\Admin\Views\Load\CaricaUtenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Prova\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\Password.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\Role.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Role.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\User\UsersRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\UsersRoles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Users\Profile.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

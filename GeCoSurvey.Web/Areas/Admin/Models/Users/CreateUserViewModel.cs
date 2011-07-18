@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
 
-namespace GeCoSurvey.Web.Areas.Admin.Models.User
+namespace GeCoSurvey.Web.Areas.Admin.Models.Users
 {
 	public class CreateUserViewModel
 	{
@@ -14,11 +14,11 @@ namespace GeCoSurvey.Web.Areas.Admin.Models.User
 		[Required, Email]
 		public string Email { get; set; }
 
-		[Display(Name = "Secret Question")]
+		[Display(Name = "Domanda Segreta")]
 		public string PasswordQuestion { get; set; }
 
 		[StringLength(100)]
-		[Display(Name = "Secret Answer")]
+		[Display(Name = "Risposta Segreta")]
 		public string PasswordAnswer { get; set; }
 	}
 }

@@ -2,7 +2,7 @@
 using System.Web.Security;
 using PagedList;
 
-namespace GeCoSurvey.Web.Areas.Admin.Models.User
+namespace GeCoSurvey.Web.Areas.Admin.Models.Users
 {
 	public class IndexViewModel
 	{

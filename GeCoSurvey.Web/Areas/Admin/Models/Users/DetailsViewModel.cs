@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Security;
 
-namespace GeCoSurvey.Web.Areas.Admin.Models.User
+namespace GeCoSurvey.Web.Areas.Admin.Models.Users
 {
 	public class DetailsViewModel
 	{
