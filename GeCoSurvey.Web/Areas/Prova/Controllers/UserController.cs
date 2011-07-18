@@ -12,7 +12,7 @@ using GeCoSurvey.Web.Areas.Admin.Models.User;
 
 namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
-    public class UserAdministrationController : Controller
+    public class UserController : Controller
     {
         //
         // GET: /Prova/UserAdministration/
@@ -28,17 +28,17 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         private readonly IPasswordService _passwordService;
 
         [InjectionConstructor]
-        public UserAdministrationController()
+        public UserController()
             : this(new AspNetMembershipProviderWrapper(), new AspNetRoleProviderWrapper(), new SmtpClientProxy())
         {
         }
 
-        public UserAdministrationController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
+        public UserController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
             : this(membership.Settings, membership, membership, roles, smtp)
         {
         }
 
-        public UserAdministrationController(
+        public UserController(
             IMembershipSettings membershipSettings,
             IUserService userService,
             IPasswordService passwordService,

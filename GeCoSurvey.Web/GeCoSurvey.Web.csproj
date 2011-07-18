@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
-    <Compile Include="Areas\Prova\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\Prova\Controllers\UserController.cs" />
     <Compile Include="Areas\Prova\Models\UserAdministration\CreateUserViewModel.cs" />
     <Compile Include="Areas\Prova\Models\UserAdministration\DetailsViewModel.cs" />
     <Compile Include="Areas\Prova\Models\UserAdministration\IndexViewModel.cs" />
@@ -248,22 +248,22 @@
     <Content Include="Areas\Prova\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\Index.cshtml" />
+    <Content Include="Areas\Prova\Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\CreateUser.cshtml" />
+    <Content Include="Areas\Prova\Views\User\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\Details.cshtml" />
+    <Content Include="Areas\Prova\Views\User\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\Password.cshtml" />
+    <Content Include="Areas\Prova\Views\User\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\Role.cshtml" />
+    <Content Include="Areas\Prova\Views\User\Role.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Prova\Views\UserAdministration\UsersRoles.cshtml" />
+    <Content Include="Areas\Prova\Views\User\UsersRoles.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
