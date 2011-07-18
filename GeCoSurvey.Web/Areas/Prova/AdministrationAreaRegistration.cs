@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace GeCoSurvey.Web.Areas.Membership
+namespace GeCoSurvey.Web.Areas.Prova
 {
-    public class MembershipAreaRegistration : AreaRegistration
+    public class ProvaAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Membership";
+                return "Prova";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Membership_default",
-                "Membership/{controller}/{action}/{id}",
+                "Prova_default",
+                "Prova/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

@@ -88,13 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
-    <Compile Include="Areas\Membership\Controllers\UserAdministrationController.cs" />
-    <Compile Include="Areas\Membership\MembershipAreaRegistration.cs" />
-    <Compile Include="Areas\Membership\Models\UserAdministration\CreateUserViewModel.cs" />
-    <Compile Include="Areas\Membership\Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Areas\Membership\Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Areas\Membership\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Areas\Prova\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\Prova\Models\UserAdministration\CreateUserViewModel.cs" />
+    <Compile Include="Areas\Prova\Models\UserAdministration\DetailsViewModel.cs" />
+    <Compile Include="Areas\Prova\Models\UserAdministration\IndexViewModel.cs" />
+    <Compile Include="Areas\Prova\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Areas\Prova\ProvaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -243,21 +241,8 @@
     <Content Include="Views\Admin\CaricaUtenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Membership\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Membership\Views\Shared\" />
-    <Folder Include="Areas\Prova\Models\" />
     <Folder Include="Areas\Prova\Views\Shared\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Membership\Views\UserAdministration\CreateUser.cshtml" />
-    <Content Include="Areas\Membership\Views\UserAdministration\Details.cshtml" />
-    <Content Include="Areas\Membership\Views\UserAdministration\Index_.cshtml" />
-    <Content Include="Areas\Membership\Views\UserAdministration\Password.cshtml" />
-    <Content Include="Areas\Membership\Views\UserAdministration\Role.cshtml" />
-    <Content Include="Areas\Membership\Views\UserAdministration\UsersRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Prova\Views\Web.config" />

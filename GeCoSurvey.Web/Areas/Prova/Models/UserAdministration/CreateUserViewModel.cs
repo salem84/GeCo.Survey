@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
 
-namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
+namespace GeCoSurvey.Web.Areas.Admin.Models.User
 {
 	public class CreateUserViewModel
 	{
