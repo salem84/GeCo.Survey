@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace GeCoSurvey.Web.Areas.Prova
+namespace GeCoSurvey.Web.Areas.Admin
 {
     public class ProvaAreaRegistration : AreaRegistration
     {

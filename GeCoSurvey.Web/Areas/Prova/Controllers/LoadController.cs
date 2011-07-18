@@ -6,16 +6,16 @@ using System.Web.Mvc;
 using GeCoSurvey.Service;
 using System.IO;
 
-namespace GeCoSurvey.Web.Controllers
+namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
     //[Authorize(Roles="Administrators")]
-    public class AdminController : Controller
+    public class LoadController : Controller
     {
         private readonly ExcelService excelService;
         private readonly UserService userService;
 
 
-        public AdminController(ExcelService excelService, UserService userService)
+        public LoadController(ExcelService excelService, UserService userService)
         {
             this.excelService = excelService;
             this.userService = userService;

@@ -95,7 +95,7 @@
     <Compile Include="Areas\Prova\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Areas\Prova\ProvaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Areas\Prova\Controllers\LoadController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,7 +189,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Prova\Views\Load\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -229,16 +229,16 @@
     <Content Include="Views\Surveys\Revisiona.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Utenti.cshtml" />
+    <Content Include="Areas\Prova\Views\Load\Utenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Surveys\Visualizza.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CaricaSurvey.cshtml" />
+    <Content Include="Areas\Prova\Views\Load\CaricaSurvey.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CaricaUtenti.cshtml" />
+    <Content Include="Areas\Prova\Views\Load\CaricaUtenti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

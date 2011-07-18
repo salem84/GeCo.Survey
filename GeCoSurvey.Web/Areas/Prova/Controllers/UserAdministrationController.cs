@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Web.Security;
 using GeCoSurvey.Web.Areas.Admin.Models.User;
 
-namespace GeCoSurvey.Web.Areas.Prova.Controllers
+namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
     public class UserAdministrationController : Controller
     {
