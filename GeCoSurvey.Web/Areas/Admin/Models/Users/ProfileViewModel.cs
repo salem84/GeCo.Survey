@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GeCoSurvey.Service;
 
 namespace GeCoSurvey.Web.Areas.Admin.Models.Users
 {
-    public class ProfileViewModel
+    public class ProfileViewModel : IUserProperties
     {
         public string Username { get; set; }
 

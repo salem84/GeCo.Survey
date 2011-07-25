@@ -8,7 +8,16 @@ using System.Web.Security;
 
 namespace GeCoSurvey.Service
 {
-    public class UserProfile : ProfileBase
+    public interface IUserProperties
+    {
+        string Nome { get; set; }
+        string Cognome { get; set; }
+        string Matricola { get; set; }
+        string Area { get; set; }
+    }
+
+
+    public class UserProfile : ProfileBase, IUserProperties
     {
         public static UserProfile GetProfile()
         {

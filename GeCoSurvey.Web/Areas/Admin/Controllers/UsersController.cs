@@ -26,11 +26,13 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         private readonly IMembershipSettings _membershipSettings;
         private readonly IUserService _userService;
         private readonly IPasswordService _passwordService;
+        private readonly GeCoSurvey.Service.IUserService _userServiceGeco;
 
         [InjectionConstructor]
-        public UsersController()
+        public UsersController(GeCoSurvey.Service.IUserService userServiceGeco)
             : this(new AspNetMembershipProviderWrapper(), new AspNetRoleProviderWrapper(), new SmtpClientProxy())
         {
+            _userServiceGeco = userServiceGeco;
         }
 
         public UsersController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
@@ -280,11 +282,32 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         public ActionResult Profile(string id)
         {
             //GetUtente(string username)
-            ProfileViewModel profileVM = new ProfileViewModel();
-            profileVM.Nome = id;
-            //Popolo ProfileViewModel
+            GeCoSurvey.Service.IUserProperties props = _userServiceGeco.GetUtente(id);
 
+            //Popolo ProfileViewModel
+            var profileVM = new ProfileViewModel();
+            profileVM.Username = id;
+            profileVM.Matricola = props.Matricola;
+            profileVM.Nome = props.Nome;
+            profileVM.Cognome = props.Cognome;
+            profileVM.Area = props.Area;
+            
             return View(profileVM);
+        }
+
+
+        [HttpPost]
+        public ActionResult Profile(string id, ProfileViewModel profilo)
+        {
+            /*GeCoSurvey.Service.UserProfile profilo = new GeCoSurvey.Service.UserProfile();
+            profilo.Nome = form["Nome"];
+            profilo.Cognome = form["Cognome"];
+            profilo.Area = form["Area"];
+            profilo.Matricola = form["Matricola"];*/
+
+            _userServiceGeco.SalvaProfilo(id, profilo);
+
+            return RedirectToAction("Index");
         }
 
         #endregion

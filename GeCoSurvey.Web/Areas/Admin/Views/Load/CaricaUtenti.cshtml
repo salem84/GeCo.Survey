@@ -5,7 +5,7 @@
 
 <h2>CaricaUtenti</h2>
 
-@using (Html.BeginForm("CaricaUtenti", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CaricaUtenti", "Load", FormMethod.Post, new { area="Admin", enctype = "multipart/form-data" }))
 {
     <span>Seleziona il file </span><br />
     <input type="file" name="file" id="file" />

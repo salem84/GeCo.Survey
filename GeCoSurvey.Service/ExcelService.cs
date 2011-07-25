@@ -11,25 +11,36 @@ using System.IO;
 
 namespace GeCoSurvey.Service
 {
-    public class ExcelService
+    public interface IExcelService
+    {
+        bool CaricaSurvey(Stream stream);
+        bool CaricaUtenti(Stream stream);
+    }
+
+
+    public class ExcelService : IExcelService
     {
         private readonly IRepository<Survey> reposSurvey;
         private readonly IRepository<Competenza> reposCompetenze;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IUserService userService;
 
         private Worksheet worksheet;
 
 
         public ExcelService(IRepository<Survey> reposSurvey,
             IRepository<Competenza> reposCompetenze,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IUserService userService)
         {
             this.reposSurvey = reposSurvey;
             this.reposCompetenze = reposCompetenze;
             this.unitOfWork = unitOfWork;
+            this.userService = userService;
         }
 
-
+        #region CARICAMENTO SURVEY
+        
         public bool CaricaSurvey(Stream stream)
         {
             //string filepath = "D:\\survey1.xlsx";
@@ -55,7 +66,7 @@ namespace GeCoSurvey.Service
 
 
                     //Prendo la domanda
-                    string questionStr = GetCellValue(worksheet, spreadsheetDocument.WorkbookPart, "B" + curRow);
+                    string questionStr = GetCellValue(worksheet, wbPart, "B" + curRow);
 
                     if (!string.IsNullOrEmpty(questionStr))
                     {
@@ -111,7 +122,63 @@ namespace GeCoSurvey.Service
             });
         }
 
-        
+        #endregion
+
+
+        #region CARICAMENTO UTENTI
+
+        public bool CaricaUtenti(Stream stream)
+        {
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(stream, false))
+            {
+                Sheet sheet = spreadsheetDocument.WorkbookPart.Workbook.Descendants<Sheet>().FirstOrDefault();
+                if (sheet == null)
+                {
+                    throw new Exception("File non valido");
+                }
+
+                WorksheetPart worksheetPart = (WorksheetPart)spreadsheetDocument.WorkbookPart.GetPartById(sheet.Id);
+                Worksheet worksheet = worksheetPart.Worksheet;
+                WorkbookPart wbPart = spreadsheetDocument.WorkbookPart;
+
+
+                uint curRow = 3;
+                bool eof = false;
+                do
+                {
+                    string username = GetCellValue(worksheet, wbPart, "A" + curRow);
+
+                    if (!string.IsNullOrEmpty(username))
+                    {
+                        string cognome = GetCellValue(worksheet, wbPart, "B"+curRow);
+                        string nome = GetCellValue(worksheet, wbPart, "C" + curRow);
+                        string matricola = GetCellValue(worksheet, wbPart, "D" + curRow);
+                        string area = "";
+
+                        Dictionary<string, string> profile = new Dictionary<string, string>();
+
+                        profile.Add("Email", username + "@pavimental.fake");
+                        profile.Add("Matricola", matricola);
+                        profile.Add("Nome", nome);
+                        profile.Add("Cognome", cognome);
+                        profile.Add("Area", area);
+
+                        userService.CreaUtente(username, profile, true);
+                    }
+                    else
+                    {
+                        eof = true;
+                    }
+                }
+                while (!eof);
+
+                return true;
+            }
+        }
+
+        #endregion
+
+        #region EXCEL HELPERS
 
         private string GetCellValue(Worksheet worksheet, WorkbookPart wbPart, string targetCell)
         {
@@ -167,5 +234,7 @@ namespace GeCoSurvey.Service
 
             return match.Value;
         }
+
+        #endregion
     }
 }

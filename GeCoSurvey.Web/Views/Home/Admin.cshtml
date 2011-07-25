@@ -1,9 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin";
 }
 
-<h2>Amministrazione</h2>
+<h2>Admin</h2>
 
 <ul>
     <li>@Html.ActionLink("Carica Survey da Excel", "CaricaSurvey", "Load", new { area = "Admin" })</li>
@@ -11,3 +10,4 @@
     @*<li>@Html.ActionLink("Gestione Utenti Responsabili", "CaricaSurvey", "Admin")</li>*@
     <li>@Html.ActionLink("Gestione Utenti", "Index", "User", new { area = "Admin" }, null)</li>
 </ul>
+

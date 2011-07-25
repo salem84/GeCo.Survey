@@ -74,7 +74,7 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult CaricaUtenti(HttpPostedFileBase file)
+        public ActionResult CaricaUtentiDaTxt(HttpPostedFileBase file)
         {
 
             if (file != null && file.ContentLength > 0)
@@ -99,17 +99,23 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
                         userService.CreaUtente(username, profile, true);
                     }
                 }
-                
-                
-                
-
-                
+                              
             }
 
             return View();
         }
 
 
+        [HttpPost]
+        public ActionResult CaricaUtenti(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                excelService.CaricaUtenti(file.InputStream);
+            }
+
+            return View();
+        }
 
        
 

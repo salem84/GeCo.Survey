@@ -30,6 +30,11 @@ namespace GeCoSurvey.Web.Controllers
             return View(surveys);
         }
 
+        /// <summary>
+        /// Utilizzato dai dipendenti per compilare il questionario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Dipendenti")]
         public ActionResult Compila(int id)
         {
@@ -64,7 +69,7 @@ namespace GeCoSurvey.Web.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Utilizzato dai responsabili per revisionare un questionaro compilato
         /// </summary>
         /// <param name="id">SurveySessionId</param>
         /// <returns></returns>
@@ -117,6 +122,10 @@ namespace GeCoSurvey.Web.Controllers
         }
 
 
+        /// <summary>
+        /// Visualizza tutti i questionari che è possibile revisionare per l'utente correntemente loggato
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles="Responsabili")]
         public ActionResult Visualizza()
         {

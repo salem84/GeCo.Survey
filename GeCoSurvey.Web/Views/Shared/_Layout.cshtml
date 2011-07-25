@@ -18,13 +18,13 @@
             </div>
             <nav>
                 <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Surveys", "Index", "Surveys")</li>
-                    <li>@Html.ActionLink("Compila1", "Compila", "Surveys", new { id = "1" }, null)</li>
-                    <li>@Html.ActionLink("Revisiona1", "Revisiona", "Surveys", new { id = "1" }, null)</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, null)</li>
+                    @*<li>@Html.ActionLink("Compila1", "Compila", "Surveys", new { id = "1" }, null)</li>*@
+                    @*<li>@Html.ActionLink("Revisiona1", "Revisiona", "Surveys", new { id = "1" }, null)</li>*@
                     <li>@Html.ActionLink("Visualizza", "Visualizza", "Surveys")</li>
-                    <li>@Html.ActionLink("Amministrazione", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Amministrazione", "Admin", "Home", new { area = "" }, null)</li>
                 </ul>
             </nav>
         </header>

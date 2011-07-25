@@ -20,7 +20,7 @@ namespace MvcMembership
 
 		public void Send(MailMessage mailMessage)
 		{
-			_smtpClient.Send(mailMessage);
+			//_smtpClient.Send(mailMessage);
 		}
 
 		#endregion

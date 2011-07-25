@@ -15,6 +15,7 @@ namespace GeCoSurvey.Service
         List<string> GetDipendentiByResponsabile(string responsabileUsername);
         void CreaUtente(string username, Dictionary<string, string> profileProp, bool skipIfExists);
         UserProfile GetUtente(string username);
+        void SalvaProfilo(string username, IUserProperties profiloNew);
     }
 
 
@@ -116,6 +117,21 @@ namespace GeCoSurvey.Service
         {
             var userProfile = ProfileBase.Create(username) as UserProfile;
             return userProfile;
+        }
+
+
+        //Utilizzato per salvare il profilo, nel pannello amministrazione
+        public void SalvaProfilo(string username, IUserProperties profiloNew)
+        {
+            //TODO forse si può fare utilizzando direttamente ProfiloNew ?
+            UserProfile profiloOld = GetUtente(username);
+
+            profiloOld.Nome = profiloNew.Nome;
+            profiloOld.Cognome = profiloNew.Cognome;
+            profiloOld.Matricola = profiloNew.Matricola;
+            profiloOld.Area = profiloNew.Area;
+
+            profiloOld.Save();
         }
 
     }

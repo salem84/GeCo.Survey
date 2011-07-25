@@ -19,5 +19,10 @@ namespace GeCoSurvey.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Admin()
+        {
+            return View();
+        }
     }
 }
