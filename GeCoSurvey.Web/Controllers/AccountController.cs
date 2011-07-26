@@ -12,7 +12,7 @@ namespace GeCoSurvey.Web.Controllers
     public class AccountController : Controller
     {
         private readonly string ROLE_PRIMO_ACCESSO = "PrimoAccesso";
-
+        private readonly string ROLE_DIPENDENTI = "Dipendenti";
 
         //
         // GET: /Account/LogOn
@@ -133,6 +133,9 @@ namespace GeCoSurvey.Web.Controllers
 
                     //Elimino il ruolo PrimoAccesso
                     Roles.RemoveUserFromRole(currentUser.UserName, ROLE_PRIMO_ACCESSO);
+                    
+                    //Lo aggiungo al ruolo Dipendenti
+                    Roles.AddUserToRole(currentUser.UserName, ROLE_DIPENDENTI);
                 }
                 catch (Exception)
                 {

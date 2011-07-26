@@ -56,11 +56,11 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult CaricaSurvey(HttpPostedFileBase file)
+        public ActionResult CaricaSurvey(string title, HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
             {
-                excelService.CaricaSurvey(file.InputStream);
+                excelService.CaricaSurvey(title, file.InputStream);
             }
 
             return View();

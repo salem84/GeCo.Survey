@@ -4,11 +4,16 @@
 }
 
 <h2>Revisiona</h2>
+
+@Html.Partial("Istruzioni/_IstruzioniAutoValutazione")
+
 @using (Html.BeginForm())
 {
     //@Html.HiddenFor(model => model.Id);
 
-    @RenderQuestionWithAnswer(Model.DomandeConRisposte);
+    <ol class="questionario">
+        @RenderQuestionWithAnswer(Model.DomandeConRisposte)
+    </ol>
 
     <input type="submit" value="Invia" />
 }
@@ -27,10 +32,12 @@
         int idRispostaData = d.RispostaDataId;
         IEnumerable<SubQuestion> subquestions = d.Question.Children;
         
-
-        <span>@testo</span><br />
+        <li>
+            <h3 class="question">@testo</h3>
+            @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData )
+        </li>
         
-        @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData );
+        
     }
 }
 
@@ -47,10 +54,10 @@
         }
         
         
-        <div class="subquestion">
+        <span class="subquestion">
             <span class="autoval @showAutoVal">&nbsp;</span>
             <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
-        </div>
+        </span>
         
     }
 }

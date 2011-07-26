@@ -16,8 +16,8 @@ namespace GeCoSurvey.Service
         SurveyWithAnswers GetSurveyWithAnswers(int idSurveySession);
         
         //List<Answer> GetRisposte(int idSurvey, string username);
-        
-        void SalvaSurvey(string username, List<Answer> risposte);
+
+        void SalvaSurvey(int surveyId, string username, List<Answer> risposte);
         void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte);
 
         IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile);
@@ -68,7 +68,7 @@ namespace GeCoSurvey.Service
             return survey;
         }
 
-        public void SalvaSurvey(string username, List<Answer> risposte)
+        public void SalvaSurvey(int surveyId, string username, List<Answer> risposte)
         {
             //TODO verifico che non esista già una sessione a nome di quell'utente?
             
@@ -76,7 +76,7 @@ namespace GeCoSurvey.Service
             SurveySession session = new SurveySession
             {
                 User = username,
-                SurveyId = 1,
+                SurveyId = surveyId,
                 Risposte = new List<Answer>()
             };
 

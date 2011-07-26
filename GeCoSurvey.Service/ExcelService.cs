@@ -13,7 +13,7 @@ namespace GeCoSurvey.Service
 {
     public interface IExcelService
     {
-        bool CaricaSurvey(Stream stream);
+        bool CaricaSurvey(string title, Stream stream);
         bool CaricaUtenti(Stream stream);
     }
 
@@ -41,7 +41,7 @@ namespace GeCoSurvey.Service
 
         #region CARICAMENTO SURVEY
         
-        public bool CaricaSurvey(Stream stream)
+        public bool CaricaSurvey(string title, Stream stream)
         {
             //string filepath = "D:\\survey1.xlsx";
             using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(stream, false))
@@ -103,7 +103,7 @@ namespace GeCoSurvey.Service
                 }
                 while (!eof);
 
-                survey.Name = "Prova";
+                survey.Name = title;
                 survey.Active = true;
                 reposSurvey.Add(survey);
                 unitOfWork.Commit();

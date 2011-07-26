@@ -35,7 +35,7 @@ namespace GeCoSurvey.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Dipendenti")]
+        [Authorize(Roles = "Dipendenti, Administrators")]
         public ActionResult Compila(int id)
         {
             var survey = surveyService.GetSurvey(id);
@@ -44,16 +44,17 @@ namespace GeCoSurvey.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult Compila(FormCollection formCollection, int? surveyId)
+        public ActionResult Compila(int id, FormCollection formCollection)
         {
-            var form = formCollection.AllKeys.ToDictionary(k => k, v => formCollection[v]);
+            //Prendo tutti i valori dei radiobutton (filtro per quelli che iniziano con 'c')
+            var form = formCollection.AllKeys.Where(k=> k.StartsWith("c")).ToDictionary(k => k, v => formCollection[v]);
 
             List<Answer> risposte = new List<Answer>();
             //salva risposte
             foreach (var coppia in form)
             {
                 Answer answer = new Answer();
-                string strQuestion = coppia.Key.Substring(1); //salto la c
+                string strQuestion = coppia.Key.Substring(1); //salto la 'c' (messa sul cshtml come prefisso per l'id)
                 answer.DomandaId = Convert.ToInt32(strQuestion);
                 
                 string strSubQuestion = coppia.Value;
@@ -62,7 +63,7 @@ namespace GeCoSurvey.Web.Controllers
                 risposte.Add(answer);
             }
 
-            surveyService.SalvaSurvey(User.Identity.Name, risposte);
+            surveyService.SalvaSurvey(id, User.Identity.Name, risposte);
 
 
             return RedirectToAction("Success");
@@ -73,7 +74,7 @@ namespace GeCoSurvey.Web.Controllers
         /// </summary>
         /// <param name="id">SurveySessionId</param>
         /// <returns></returns>
-        [Authorize(Roles="Responsabili")]
+        [Authorize(Roles = "Responsabili, Administrators")]
         public ActionResult Revisiona(int id)
         {
             SurveyWithAnswers surveyWithAnswers = surveyService.GetSurveyWithAnswers(id);
@@ -126,7 +127,7 @@ namespace GeCoSurvey.Web.Controllers
         /// Visualizza tutti i questionari che è possibile revisionare per l'utente correntemente loggato
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles="Responsabili")]
+        [Authorize(Roles = "Responsabili, Administrators")]
         public ActionResult Visualizza()
         {
             string responsabile = User.Identity.Name;

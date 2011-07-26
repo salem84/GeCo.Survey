@@ -7,7 +7,7 @@
 <h2>Compila</h2>
 @using (Html.BeginForm())
 {
-    //@Html.HiddenFor(model => model.Id);
+    @Html.HiddenFor(model => model.Id);
 
     <ol class="questionario">
         @RenderQuestion(Model.Questions)

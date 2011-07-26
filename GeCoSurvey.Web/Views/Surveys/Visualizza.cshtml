@@ -14,7 +14,7 @@
     
     @if (ss.Completato)
     {
-        Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = ss.Id }, null);
+        @Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = ss.Id }, null);
     }
     </li>
     

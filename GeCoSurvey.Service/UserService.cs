@@ -45,6 +45,11 @@ namespace GeCoSurvey.Service
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(storedProc, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter() { ParameterName = "Area", Value = area });
+                command.Parameters.Add(new SqlParameter() { ParameterName = "Ruolo", Value = role });
+
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 try
