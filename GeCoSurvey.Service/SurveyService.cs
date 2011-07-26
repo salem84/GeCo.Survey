@@ -5,13 +5,15 @@ using System.Text;
 using GeCoSurvey.Domain;
 using GeCoSurvey.Data.Infrastructure;
 using GeCoSurvey.Data;
+using GeCo.Infrastructure;
 
 namespace GeCoSurvey.Service
 {
     public interface ISurveyService
     {
         IEnumerable<Survey> GetSurveys(bool active);
-        
+        IEnumerable<SurveyWithState> GetSurveysWithState(string username, bool active);
+
         Survey GetSurvey(int idSurvey);
         SurveyWithAnswers GetSurveyWithAnswers(int idSurveySession);
         
@@ -62,6 +64,27 @@ namespace GeCoSurvey.Service
             return surveys;
         }
 
+        public IEnumerable<SurveyWithState> GetSurveysWithState(string username, bool active)
+        {
+            //Parto dalle sessioni per vedere quelli compilati
+            var surveysCompilati = reposSurveySession.GetMany(s => s.User == username).Select(s => s.Survey).Where(s => s.Active == active);
+
+            //Tutti quanti
+            var surveys = GetSurveys(active);
+
+            //Incrocio
+            var surveysConStato = from s in surveys
+                                 let compilato = surveysCompilati.Contains(s, su => su.Id)
+                                 select new SurveyWithState
+                                 {
+                                     Survey = s,
+                                     Compilato = compilato
+                                 };
+
+            return surveysConStato;
+        }
+
+
         public Survey GetSurvey(int id)
         {
             var survey = reposSurvey.GetById(id);
@@ -110,21 +133,17 @@ namespace GeCoSurvey.Service
 
         public void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte)
         {
-            Dipendente dipendente = new Dipendente
-            {
-                Nome = "pippo",
-                Cognome = "boh",
-                Matricola = "112",
-                DataNascita = DateTime.Parse("25/01/1984"),
-            };
-            
+            Dipendente dipendente = new Dipendente();            
 
 
             //List<LivelloConoscenza> livelli = dipendentiService.GetLivelliConoscenza();
             var session = GetSurveySession(idSurveySession);
             
             //Leggo le informazioni dell'utente
-            userService.GetUtente(session.User);
+            UserProfile profilo = userService.GetUtente(session.User);
+            dipendente.Nome = profilo.Nome;
+            dipendente.Cognome = profilo.Cognome;
+            dipendente.Matricola = profilo.Matricola;
             
             var domande = session.Survey.Questions;
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GeCoSurvey.Domain.Survey>
+﻿@model IEnumerable<GeCoSurvey.Domain.SurveyWithState>
 @{
     ViewBag.Title = "Surveys";
 }
@@ -7,13 +7,22 @@
 
 <div id="surveyList">
 <ul>
-@foreach (var survey in Model)
+@foreach (var surveyState in Model)
 {
     //UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
     //string url = u.Action("Compila", "Surveys", new {id = "1"});
     
     <li>
-    @survey.Id - @survey.Name @Html.ActionLink("Compila", "Compila", "Surveys", new { id = survey.Id }, null);
+    @surveyState.Survey.Id - @surveyState.Survey.Name 
+    
+    @if (!surveyState.Compilato)
+    { 
+        @Html.ActionLink("Compila", "Compila", "Surveys", new { id = surveyState.Survey.Id }, null);
+    }
+    else
+    {
+        <span> [compilato]</span>
+    }
     </li>
 }
 </ul>

@@ -4,22 +4,22 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Create a New Account</h2>
+<h2>Crea Nuovo Account</h2>
 <p>
-    Use the form below to create a new account. 
+    Utilizzare questa pagina per creare un nuovo account
 </p>
 <p>
-    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+    La nuova password deve essere lunga almeno @Membership.MinRequiredPasswordLength caratteri.
 </p>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    @Html.ValidationSummary(true, "Cambio Password non riuscito. Correggere gli errori e riprovare.")
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend>Informazioni Account</legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
@@ -54,7 +54,7 @@
             </div>
 
             <p>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Registra" />
             </p>
         </fieldset>
     </div>

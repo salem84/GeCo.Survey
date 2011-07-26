@@ -12,18 +12,18 @@ namespace GeCoSurvey.Web.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Password Corrente")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nuova password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Ripeti password")]
+        [Compare("NewPassword", ErrorMessage = "Le password non coincidono")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -38,7 +38,7 @@ namespace GeCoSurvey.Web.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Ricorda Login")]
         public bool RememberMe { get; set; }
     }
 
@@ -50,18 +50,18 @@ namespace GeCoSurvey.Web.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email address")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Conferma password")]
+        [Compare("Password", ErrorMessage = "Le password non coincidono")]
         public string ConfirmPassword { get; set; }
     }
 }

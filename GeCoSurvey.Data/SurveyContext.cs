@@ -76,6 +76,10 @@ namespace GeCoSurvey.Data
 
             /*modelBuilder.Entity<Ruolo>()
                 .Map(m =>m.ToTable("Ruoli"));*/
+            modelBuilder.Entity<Anagrafica>()
+               .Map(m => m.ToTable("Anagrafica"))
+               .Map<Dipendente>(m => m.Requires("Tipo").HasValue("DIP"))
+               .Map<Ruolo>(m => m.Requires("Tipo").HasValue("ROLE"));
 
 
             modelBuilder.Entity<LivelloConoscenza>()

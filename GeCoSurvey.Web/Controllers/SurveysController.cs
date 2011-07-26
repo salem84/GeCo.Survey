@@ -25,7 +25,10 @@ namespace GeCoSurvey.Web.Controllers
         {
             ViewBag.Message = "Ciao";
 
-            var surveys = surveyService.GetSurveys(true);
+            string username = User.Identity.Name;
+
+            //Segno per ogni survey, quali sono stati già compilati dall'utente
+            var surveys = surveyService.GetSurveysWithState(username, true);
 
             return View(surveys);
         }
