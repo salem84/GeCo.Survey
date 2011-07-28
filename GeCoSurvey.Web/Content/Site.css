@@ -9,7 +9,8 @@ body {
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    color: #696969;
+    /*color: #696969;*/
+    color: navy;
 }
 
 a:link {
@@ -404,14 +405,20 @@ table.gradi
     width: 70%;
     margin-left:auto;
     margin-right:auto;
-    border:1px solid #066BB0;
+    border:2px solid #066BB0;
     border-collapse: collapse;
 }
+table.gradi td
+{
+    border:1px solid #066BB0;
+}
+
         
 .colonnaGrado
 {
     width: 130px;
-    text-align:center
+    text-align:center;
+    font-weight:bold;
 }
 .rigaGrado1
 {

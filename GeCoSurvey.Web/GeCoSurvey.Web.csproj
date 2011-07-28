@@ -161,6 +161,7 @@
     <Content Include="Scripts\PagedList\PagedList.Mvc.Template.html" />
     <Content Include="Views\Surveys\Test2.htm" />
     <Content Include="Views\Surveys\Test.htm" />
+    <Content Include="Views\Surveys\Test3.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -275,10 +276,16 @@
     <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Istruzioni\_IstruzioniAutoValutazione.cshtml" />
+    <Content Include="Views\Shared\_IstruzioniAutoValutazione.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Istruzioni\_IstruzioniEteroValutazione.cshtml" />
+    <Content Include="Views\Shared\_IstruzioniEteroValutazione.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_HeaderAutoValutazione.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_HeaderEteroValutazione.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
