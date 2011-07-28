@@ -14,11 +14,11 @@ namespace GeCoSurvey.Domain
         public virtual Survey Survey { get; set; }
         public int SurveyId { get; set; }
 
-        /*[ForeignKey("Id")]
-        public virtual Question Parent { get; set; }
-        public int? ParentId { get; set; }*/
-
         public string Testo { get; set; }
+        
+        //TODO meglio così o con l'id della subquestion corretta? o al livelloconoscenza?
+        //public LivelloConoscenza ValoreAtteso { get; set; }
+        public int ValoreAttesoId { get; set; }
 
         public virtual ICollection<SubQuestion> Children { get; set; }
         

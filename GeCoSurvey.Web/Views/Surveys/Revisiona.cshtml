@@ -5,12 +5,11 @@
 
 <h2>Revisiona</h2>
 
-@Html.Partial("Istruzioni/_IstruzioniAutoValutazione")
-
 @using (Html.BeginForm())
 {
     //@Html.HiddenFor(model => model.Id);
-
+    @Html.Partial("_HeaderEteroValutazione", Model.NomeRisorsa);
+    
     <ol class="questionario">
         @RenderQuestionWithAnswer(Model.DomandeConRisposte)
     </ol>
@@ -25,39 +24,45 @@
 @using GeCoSurvey.Web.Models;
 @helper RenderQuestionWithAnswer(IEnumerable<QuestionWithAnswer> domande)
     {
-    foreach (var d in domande)
-    {
-        string testo = d.Question.Testo;
-        string idQuestion = d.Question.Id.ToString();
-        int idRispostaData = d.RispostaDataId;
-        IEnumerable<SubQuestion> subquestions = d.Question.Children;
+        foreach (var d in domande)
+        {
+            string testo = d.Question.Testo;
+            string idQuestion = d.Question.Id.ToString();
+            int idRispostaData = d.RispostaDataId;
+            int idValoreAtteso = d.Question.ValoreAttesoId;
+            IEnumerable<SubQuestion> subquestions = d.Question.Children;
         
         <li>
             <h3 class="question">@testo</h3>
-            @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData )
+            @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
         </li>
         
         
-    }
+        }
 }
 
-@helper RenderSubQuestionWithAnswer(string idQuestion, IEnumerable<SubQuestion> subquestions, int idRispostaData)
+@helper RenderSubQuestionWithAnswer(string idQuestion, IEnumerable<SubQuestion> subquestions, int idRispostaData, int idValoreAtteso)
     {
-    foreach (var s in subquestions)
-    {
-        string idSubQuestion = s.Id.ToString();
-        string testo = s.Testo;
-        string showAutoVal = "";
-        if (s.Id == idRispostaData)
+        foreach (var s in subquestions)
         {
-            showAutoVal = "showAutoVal";
-        }
-        
+            string idSubQuestion = s.Id.ToString();
+            string testo = s.Testo;
+            string showValAtteso = "";
+            string showAutoVal = "";
+            if (s.Id == idRispostaData)
+            {
+                showAutoVal = "showAutoVal";
+            }
+
+            if (s.LivelloConoscenzaId == idValoreAtteso)
+            {
+                showValAtteso = "showValAtteso";
+            }
         
         <span class="subquestion">
-            <span class="autoval @showAutoVal">&nbsp;</span>
-            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
+            <span class="valAtteso @showValAtteso">&nbsp;</span>
+            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' /><span class="@showAutoVal">@testo</span><br />
         </span>
         
-    }
+        }
 }

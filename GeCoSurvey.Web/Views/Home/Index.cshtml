@@ -1,8 +1,24 @@
-﻿@{
+﻿@using GeCoSurvey.Data;
+@{
     ViewBag.Title = "Home Page";
 }
+@*<h2>Benvenuto</h2>*@
 
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+
+@CaricaIstruzioni()
+
+
+@helper CaricaIstruzioni()
+{
+    string nome = ViewBag.NomeCompleto;
+    if (ViewBag.Ruolo == Tipologiche.Ruoli.DIPENDENTI)
+    {
+        @Html.Partial("_HeaderAutoValutazione", nome);
+        @Html.Partial("_IstruzioniAutoValutazione");
+    }
+    else if (ViewBag.Ruolo == Tipologiche.Ruoli.RESPONSABILI)
+    {
+        @Html.Partial("_HeaderEteroValutazione");
+        @Html.Partial("_IstruzioniEteroValutazione");
+    }
+}

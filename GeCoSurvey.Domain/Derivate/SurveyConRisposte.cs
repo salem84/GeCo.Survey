@@ -6,6 +6,7 @@ namespace GeCoSurvey.Domain
 {
     public class SurveyWithAnswers 
     {
+        public string NomeRisorsa { get; set; }
         public SurveySession SurveySession { get; set; }
         public List<QuestionWithAnswer> DomandeConRisposte { get; set; }
     }

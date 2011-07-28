@@ -31,7 +31,8 @@ namespace GeCoSurvey.Data
             {
                 SurveyId = survey.Id,
                 Testo = "Prima domanda",
-                CompetenzaId = compId
+                CompetenzaId = compId,
+                ValoreAttesoId = 2
             };
             context.Questions.Add(question);
 
@@ -53,7 +54,8 @@ namespace GeCoSurvey.Data
             {
                 SurveyId = survey.Id,
                 Testo = "Seconda domanda",
-                CompetenzaId = compId
+                CompetenzaId = compId,
+                ValoreAttesoId = 2
             };
             context.Questions.Add(question);
 

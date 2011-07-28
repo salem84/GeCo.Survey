@@ -326,15 +326,21 @@ div#title {
 
 /* Stili per il questionario 
 ----------------------------------------------------------*/
-.autoval
+.valAtteso
 {
-    width:10px;
-    height:10px;
+    display:inline-block;
+    width:15px;
+    height:15px;
+}
+
+.showValAtteso
+{
+    background:url('star.png');
 }
 
 .showAutoVal
 {
-    background-color:Red;
+    text-decoration:underline;
 }
 
 .question
@@ -345,4 +351,81 @@ div#title {
 .subquestion
 {
     margin-bottom:10px;
+}
+
+
+/* Stili per l'header con il titolo e il nome del dipendente
+----------------------------------------------------------*/
+.header
+{
+    border:1px #003F00 solid;
+    background:#96D257;
+    color:White; 
+}
+        
+.header h1
+{
+    font-variant:small-caps;
+    text-align:center;
+}
+        
+.header h2
+{
+    font-variant:small-caps;   
+    font-style:italic;
+    text-align:center;
+}
+        
+.header .risorsaLabel
+{
+    font-variant:small-caps;   
+    font-size:larger;
+    font-weight:bold;
+    padding-left:10px;
+}
+        
+.header .risorsaNome
+{
+    padding-left:20px;
+    font-style:italic
+}
+        
+.header
+{
+    padding-bottom:10px;
+}
+        
+
+/* Stili per la tabella dei gradi
+----------------------------------------------------------*/
+        
+table.gradi
+{
+    width: 70%;
+    margin-left:auto;
+    margin-right:auto;
+    border:1px solid #066BB0;
+    border-collapse: collapse;
+}
+        
+.colonnaGrado
+{
+    width: 130px;
+    text-align:center
+}
+.rigaGrado1
+{
+    background-color:#FFFF99;
+}
+.rigaGrado2
+{
+    background-color:#FFFF00;
+}
+.rigaGrado3
+{
+    background-color:#FF0000;
+}
+.rigaGrado4
+{
+    background-color:#66FF66;
 }

@@ -46,7 +46,7 @@ namespace GeCoSurvey.Service
             //string filepath = "D:\\survey1.xlsx";
             using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(stream, false))
             {
-                IEnumerable<Sheet> sheets = spreadsheetDocument.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == "Autovalutazione");
+                IEnumerable<Sheet> sheets = spreadsheetDocument.WorkbookPart.Workbook.Descendants<Sheet>().Where(s => s.Name == "Eterovalutazione");
                 if (sheets.Count() == 0)
                 {
                     throw new Exception("File non valido");
@@ -93,6 +93,11 @@ namespace GeCoSurvey.Service
                         AddSubQuestion(worksheet, wbPart, "G" + curRow, 3, question);
                         AddSubQuestion(worksheet, wbPart, "I" + curRow, 4, question);
                         AddSubQuestion(worksheet, wbPart, "K" + curRow, 5, question);
+
+                        //Leggo il valore atteso
+                        string s_valAtteso = GetCellValue(worksheet, wbPart, "M" + curRow);
+                        //Livello nullo ha id 1
+                        question.ValoreAttesoId = Convert.ToInt32(s_valAtteso) + 1;
 
                         survey.Questions.Add(question);
 
