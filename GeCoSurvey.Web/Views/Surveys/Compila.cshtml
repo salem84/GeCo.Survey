@@ -3,6 +3,20 @@
     ViewBag.Title = "Compila";
 }
 
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("form").validate({
+            errorPlacement: function (error, element) {
+                //var t = $(element).closest("table").siblings("span");
+                var t = $(element).closest("li").find(".question>label");
+                error.insertAfter(t);
+            }
+        });
+        $.validator.messages.required = "* Indicare una risposta";
+    });
+</script>
+
 
 <h2>Compila</h2>
 @using (Html.BeginForm())
@@ -21,30 +35,44 @@
 @using GeCoSurvey.Domain;
 @helper RenderQuestion(IEnumerable<Question> domande)
     {
-    foreach (var d in domande)
-    {
-        string testo = d.Testo;
-        string idQuestion = d.Id.ToString();
-        IEnumerable<SubQuestion> subquestions = d.Children;
+        foreach (var d in domande)
+        {
+            string testo = d.Testo;
+            string idQuestion = d.Id.ToString();
+            IEnumerable<SubQuestion> subquestions = d.Children;
         
+        
+            
         <li>
-            <h3 class="question">@testo</h3>
-        
-            @RenderSubQuestion(idQuestion, subquestions)
-
+            @*<h3 class="question">@testo</h3>*@
+            <div class="question">
+                <label>@testo</label>
+            </div>
+            <table>
+                @RenderSubQuestion(idQuestion, subquestions)
+            </table>
         </li>
-    }
+        }
 }
 
 @helper RenderSubQuestion(string idQuestion, IEnumerable<SubQuestion> subquestions)
     {
-    foreach (var s in subquestions)
-    {
-        string idSubQuestion = s.Id.ToString();
-        string testo = s.Testo;
-        <span class="subquestion">
-            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
-        </span>
+        int progressivo = 0;
         
-    }
+        foreach (var s in subquestions)
+        {
+            string idSubQuestion = s.Id.ToString();
+            string testo = s.Testo;
+            string rowClass = "rigaGrado" + progressivo++;
+            
+            @*<span class="subquestion">
+                <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />
+            </span>*@
+        
+            <tr class="@rowClass">
+                <td class="colonnaGrado">@Html.RadioButton("c" + idQuestion, idSubQuestion, new { @class = "required" })</td>
+                <td>@testo</td>
+            </tr>
+        
+        }
 }

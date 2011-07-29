@@ -2,13 +2,28 @@
 @{
     ViewBag.Title = "Revisiona";
 }
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("form").validate({
+            messages: {
+                required: "Prova"
+            },
+            errorPlacement: function (error, element) {
+                //var t = $(element).closest("table").siblings("span");
+                var t = $(element).closest("li").find("h3");
+                error.insertAfter(t);
+            }
+        });
+    });
+</script>
 
 <h2>Revisiona</h2>
 
 @using (Html.BeginForm())
 {
     //@Html.HiddenFor(model => model.Id);
-    @Html.Partial("_HeaderEteroValutazione", Model.NomeRisorsa);
+    @Html.Partial("_HeaderEteroValutazione", Model.NomeRisorsa)
     
     <ol class="questionario">
         @RenderQuestionWithAnswer(Model.DomandeConRisposte)
@@ -34,9 +49,10 @@
         
         <li>
             <h3 class="question">@testo</h3>
-            @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
+            
+                @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
+            
         </li>
-        
         
         }
 }
@@ -61,7 +77,9 @@
         
         <span class="subquestion">
             <span class="valAtteso @showValAtteso">&nbsp;</span>
-            <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' /><span class="@showAutoVal">@testo</span><br />
+            @Html.RadioButton("c" + idQuestion, idSubQuestion, new { @class = "required" })
+            @*<input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />*@
+            <span class="@showAutoVal">@testo</span><br />
         </span>
         
         }

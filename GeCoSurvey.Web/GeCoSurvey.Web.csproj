@@ -162,6 +162,7 @@
     <Content Include="Views\Surveys\Test2.htm" />
     <Content Include="Views\Surveys\Test.htm" />
     <Content Include="Views\Surveys\Test3.htm" />
+    <Content Include="Views\Surveys\Test4.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

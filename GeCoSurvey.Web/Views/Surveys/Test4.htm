@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../../Scripts/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.validate.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*$.validator.addMethod('m_required_group', function (val, el) {
+            var $module = $(el);
+            //return $module.find('.required_group:filled').length;
+            return false;
+            }, "non valido");
+
+            $.validator.addClassRules('required_group', {
+            'm_required_group': true
+            });
+            */
+            $("#commentForm").validate({
+                messages: {
+                    required: "Prova"
+                },
+                errorPlacement: function (error, element) {
+                    var t = $(element).closest("table").siblings("span");
+                    error.insertAfter(t);
+                }
+            });
+
+
+        });
+        function prova() {
+            $("#commentForm").validate().form();
+        }
+    </script>
+</head>
+<body>
+<form class="cmxform" id="commentForm" method="get" action="">
+<span class="question">domanda?</span>
+<table class="required_group">
+    <tr class="rigaGrado0">
+        <td class="colonnaGrado"><input class="required" type="radio" name="g1" /></td>
+        <td>Padronanza della conoscenza/competenza non valutabile.</td>
+    </tr>
+    <tr class="rigaGrado1">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Padronanza della conoscenza/competenza e abilità ad utilizzare questa padronanza nel contesto operativo richiedendo (occasionalmente) supervisione.</td>
+    </tr>
+    <tr class="rigaGrado2">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Profonda padronanza della conoscenza/competenza e capacità di utilizzare questa padronanza in autonomia nel contesto operativo.</td>
+    </tr>
+    <tr class="rigaGrado3">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Livello di padronanza della conoscenza/competenza molto alto e capacità di trasferire questa padronanza agli altri.</td>
+    </tr>
+    <tr class="rigaGrado4">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Padronanza della conoscenza/competenza tale da rendere chi la detiene un riferimento aziendale.</td>
+    </tr>
+</table>
+
+<!--<table class="gradi">
+    <tr class="rigaGrado0">
+        <td class="colonnaGrado"><input type="radio" name="g1" /></td>
+        <td>Padronanza della conoscenza/competenza non valutabile.</td>
+    </tr>
+    <tr class="rigaGrado1">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Padronanza della conoscenza/competenza e abilità ad utilizzare questa padronanza nel contesto operativo richiedendo (occasionalmente) supervisione.</td>
+    </tr>
+    <tr class="rigaGrado2">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Profonda padronanza della conoscenza/competenza e capacità di utilizzare questa padronanza in autonomia nel contesto operativo.</td>
+    </tr>
+    <tr class="rigaGrado3">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Livello di padronanza della conoscenza/competenza molto alto e capacità di trasferire questa padronanza agli altri.</td>
+    </tr>
+    <tr class="rigaGrado4">
+        <td class="colonnaGrado"><input type="radio" name="g1"/></td>
+        <td>Padronanza della conoscenza/competenza tale da rendere chi la detiene un riferimento aziendale.</td>
+    </tr>
+</table>-->
+<label for="ccomment">Your comment</label>
+     <em>*</em><textarea id="ccomment" name="comment" cols="22"  class="requiredf"></textarea>
+<input type="submit" value="invia" />
+<a href="#" onclick="javascript:prova()">valida</a>
+</form>
+</body>
+</html>
