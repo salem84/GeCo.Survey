@@ -21,6 +21,11 @@ namespace GeCoSurvey.Web.Controllers
             this.dipendentiService = dipendentiService;
         }
 
+        /// <summary>
+        /// Visualizza i questionari da compilare
+        /// </summary>
+        /// <returns></returns>
+         [Authorize(Roles = "Dipendenti, Administrators")]
         public ActionResult Index()
         {
             ViewBag.Message = "Ciao";
@@ -31,6 +36,20 @@ namespace GeCoSurvey.Web.Controllers
             var surveys = surveyService.GetSurveysWithState(username, true);
 
             return View(surveys);
+        }
+
+        /// <summary>
+        /// Visualizza tutti i questionari che è possibile revisionare per l'utente correntemente loggato
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "Responsabili, Administrators")]
+        public ActionResult Visualizza()
+        {
+            string responsabile = User.Identity.Name;
+
+            var result = surveyService.GetSurveySessionsByResponsabile(responsabile);
+
+            return View(result);
         }
 
         /// <summary>
@@ -126,18 +145,6 @@ namespace GeCoSurvey.Web.Controllers
         }
 
 
-        /// <summary>
-        /// Visualizza tutti i questionari che è possibile revisionare per l'utente correntemente loggato
-        /// </summary>
-        /// <returns></returns>
-        [Authorize(Roles = "Responsabili, Administrators")]
-        public ActionResult Visualizza()
-        {
-            string responsabile = User.Identity.Name;
-
-            var result = surveyService.GetSurveySessionsByResponsabile(responsabile);
-
-            return View(result);
-        }
+        
     }
 }

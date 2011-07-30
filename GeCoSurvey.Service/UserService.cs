@@ -78,7 +78,7 @@ namespace GeCoSurvey.Service
             //Registro l'utente
             MembershipCreateStatus createStatus;
 
-            username += DateTime.Now.Ticks;
+            //username += DateTime.Now.Ticks;
             Membership.CreateUser(username, password, email, null, null, true, null, out createStatus);
             
 

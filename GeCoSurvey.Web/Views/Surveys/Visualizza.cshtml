@@ -3,26 +3,33 @@
     ViewBag.Title = "Visualizza";
 }
 
+
+
 <h2>Stato Questionari di competenza</h2>
 
-<ul>
+<table>
+<thead>
+<tr>
+<th style="width:100px">Utente</th>
+<th style="width:200px">Stato</th>
+</thead>
 @foreach (var ss in Model)
 { 
-    <li>
-    <span><b>Utente: </b>@ss.User </span><br />
-    <span><b>Stato: </b>@DisplayStato(ss)</span><br />
+    <tr>
+    <td>@ss.User </td>
+    <td>@DisplayStato(ss)</td>
 
     
-    @*se è stato completato ma non revisionato *@
+    @*se è stato completato ma non revisionato 
     @if (ss.Completato && !ss.Revisionato)
     {
-        @Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = ss.Id }, null);
-    }
-    </li>
+        
+    }*@
+    </tr>
     
 }
 
-</ul>
+</table>
 
 
 @helper DisplayStato(GeCoSurvey.Domain.SurveySession session)
@@ -35,7 +42,7 @@
     {
         if (!session.Revisionato)
         {
-            @("Completato");
+            @Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = session.Id }, null);
         }
         else
         { 

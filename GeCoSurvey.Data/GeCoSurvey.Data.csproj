@@ -54,7 +54,9 @@
     <Compile Include="Infrastructure\PagedResult.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Init\DipendentiDefault.cs" />
     <Compile Include="Init\InitializeClientDB.cs" />
+    <Compile Include="Init\RuoliDefault.cs" />
     <Compile Include="Init\SurveyContextInitializer.cs" />
     <Compile Include="Repositories\SurveyRepository.cs" />
     <Compile Include="SurveyContext.cs" />

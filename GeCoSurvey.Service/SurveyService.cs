@@ -183,6 +183,7 @@ namespace GeCoSurvey.Service
                 Survey survey = surveySession.Survey;
                 List<Answer> risposte = surveySession.Risposte.ToList();
 
+                //Prendo tutte le domande e risposte
                 var qWr = from q in survey.Questions
                           let risposta = risposte.Single(r => r.DomandaId == q.Id)
                           select new QuestionWithAnswer
@@ -191,10 +192,16 @@ namespace GeCoSurvey.Service
                               Question = q
                           };
 
+                //Carico le informazioni sul profilo
+                string username = surveySession.User;
+                UserProfile profilo = userService.GetUtente(username);
+
+                //Creo l'oggetto per la view
                 SurveyWithAnswers surveyWithAnswers = new SurveyWithAnswers
                 {
                     SurveySession = surveySession,
-                    DomandeConRisposte = qWr.ToList()
+                    DomandeConRisposte = qWr.ToList(),
+                    NomeRisorsa = profilo.ToString()
                 };
 
                 return surveyWithAnswers;

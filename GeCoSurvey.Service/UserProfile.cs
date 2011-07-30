@@ -93,6 +93,11 @@ namespace GeCoSurvey.Service
             }
         }
 
+
+        public override string ToString()
+        {
+            return string.Format("#{0} - {1} {2}", Matricola, Nome, Cognome);
+        }
     }
 
 }

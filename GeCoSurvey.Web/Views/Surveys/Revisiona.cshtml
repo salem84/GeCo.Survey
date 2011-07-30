@@ -1,4 +1,5 @@
-﻿@model GeCoSurvey.Domain.SurveyWithAnswers
+﻿@using GeCoSurvey.Web.Helpers;
+@model GeCoSurvey.Domain.SurveyWithAnswers
 @{
     ViewBag.Title = "Revisiona";
 }
@@ -20,11 +21,13 @@
 
 <h2>Revisiona</h2>
 
+
 @using (Html.BeginForm())
 {
     //@Html.HiddenFor(model => model.Id);
-    @Html.Partial("_HeaderEteroValutazione", Model.NomeRisorsa)
+    @Html.Partial("_HeaderEteroValutazione", new { ShowIstruzioni = false, User = Model.NomeRisorsa }.ToExpando())
     
+    <br /><br />
     <ol class="questionario">
         @RenderQuestionWithAnswer(Model.DomandeConRisposte)
     </ol>
@@ -48,10 +51,12 @@
             IEnumerable<SubQuestion> subquestions = d.Question.Children;
         
         <li>
-            <h3 class="question">@testo</h3>
-            
-                @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
-            
+            <div class="question">
+                <label>@testo</label>
+                <table class="gradi">
+                    @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
+                </table>
+            </div>
         </li>
         
         }
@@ -59,28 +64,38 @@
 
 @helper RenderSubQuestionWithAnswer(string idQuestion, IEnumerable<SubQuestion> subquestions, int idRispostaData, int idValoreAtteso)
     {
-        foreach (var s in subquestions)
+        var subQuestionsOrdered = subquestions.OrderBy(sub => sub.LivelloConoscenzaId);
+        
+        foreach (var s in subQuestionsOrdered)
         {
             string idSubQuestion = s.Id.ToString();
             string testo = s.Testo;
-            string showValAtteso = "";
-            string showAutoVal = "";
-            if (s.Id == idRispostaData)
-            {
-                showAutoVal = "showAutoVal";
-            }
+            
+            string rowClass = "rigaGrado" + (s.LivelloConoscenzaId - 1);
+            //if (s.Id == idRispostaData)
+            //{
+            //    showAutoVal = true;
+            //}
 
-            if (s.LivelloConoscenzaId == idValoreAtteso)
-            {
-                showValAtteso = "showValAtteso";
-            }
+            //if (s.LivelloConoscenzaId == idValoreAtteso)
+            //{
+            //    showValAtteso = true;
+            //}
         
-        <span class="subquestion">
-            <span class="valAtteso @showValAtteso">&nbsp;</span>
-            @Html.RadioButton("c" + idQuestion, idSubQuestion, new { @class = "required" })
-            @*<input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />*@
-            <span class="@showAutoVal">@testo</span><br />
-        </span>
+        <tr class="@rowClass">
+            <td class="colonnaIcone">
+            @if (s.Id == idRispostaData)
+            {
+                <img src="@Url.Content("~/Content/autoval.png")" alt="autoval" />   
+            }
+            @if (s.LivelloConoscenzaId == idValoreAtteso)
+            {
+                <img src="@Url.Content("~/Content/star.png")" alt="star" />
+            }
+            </td>
+            <td class="colonnaGrado">@Html.RadioButton("c" + idQuestion, idSubQuestion, new { @class = "required" })</td>
+            <td>@testo</td>
+        </tr>
         
         }
 }

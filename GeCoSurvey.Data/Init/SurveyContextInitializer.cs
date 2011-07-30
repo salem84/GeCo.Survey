@@ -37,11 +37,11 @@ namespace GeCoSurvey.Data
             context.Questions.Add(question);
 
             var subQuestions = new List<SubQuestion>{
-                new SubQuestion{QuestionId = question.Id, Testo = "Alto", LivelloConoscenzaId = 5},
-                new SubQuestion{QuestionId = question.Id, Testo = "Medio", LivelloConoscenzaId = 4},
-                new SubQuestion{QuestionId = question.Id, Testo = "Basso", LivelloConoscenzaId = 3},
-                new SubQuestion{QuestionId = question.Id, Testo = "Bassissimo", LivelloConoscenzaId = 2},
                 new SubQuestion{QuestionId = question.Id, Testo = "nn ce sta", LivelloConoscenzaId = 1},
+                new SubQuestion{QuestionId = question.Id, Testo = "Bassissimo", LivelloConoscenzaId = 2},
+                new SubQuestion{QuestionId = question.Id, Testo = "Basso", LivelloConoscenzaId = 3},
+                new SubQuestion{QuestionId = question.Id, Testo = "Medio", LivelloConoscenzaId = 4},
+                new SubQuestion{QuestionId = question.Id, Testo = "Alto", LivelloConoscenzaId = 5},
             };
 
             question.Children = subQuestions;

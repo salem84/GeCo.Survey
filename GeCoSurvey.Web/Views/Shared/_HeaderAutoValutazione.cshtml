@@ -1,5 +1,13 @@
 ﻿<div class="header">
     <h1>Questionario di Autovalutazione</h1>
-    <h2>Istruzioni per la compilazione</h2>
+    
+    @if (Model.ShowIstruzioni == true)
+    { 
+        <h2>Istruzioni per la compilazione</h2>
+    }
+    else
+    { 
+        <h2>&nbsp;</h2>
+    }
     @*<span class="risorsaLabel">Risorsa:</span><span class="risorsaNome">Giorgio</span>*@
 </div>

@@ -15,11 +15,11 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	-- Insert statements for procedure here
-	SELECT     dbo.aspnet_Profile2.*
+    -- Insert statements for procedure here
+SELECT     dbo.aspnet_Users.LoweredUserName
 FROM         dbo.aspnet_Profile2 INNER JOIN
-					  dbo.aspnet_UsersInRoles ON dbo.aspnet_Profile2.UserID = dbo.aspnet_UsersInRoles.UserId CROSS JOIN
-					  dbo.aspnet_Roles
-WHERE     (dbo.aspnet_Profile2.Area = N'area1') AND (dbo.aspnet_Roles.RoleName = N'primoaccesso')
+                      dbo.aspnet_UsersInRoles ON dbo.aspnet_Profile2.UserID = dbo.aspnet_UsersInRoles.UserId INNER JOIN
+                      dbo.aspnet_Users ON dbo.aspnet_Profile2.UserID = dbo.aspnet_Users.UserId CROSS JOIN
+                      dbo.aspnet_Roles
+WHERE     (dbo.aspnet_Profile2.Area = @Area) AND (dbo.aspnet_Roles.RoleName = @Ruolo)
 END
-

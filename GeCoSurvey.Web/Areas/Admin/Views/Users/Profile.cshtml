@@ -1,10 +1,10 @@
 ﻿@model GeCoSurvey.Web.Areas.Admin.Models.Users.ProfileViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Profilo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Profiles</h2>
+<h2>Profilo</h2>
 
 @using(Html.BeginForm("Profile", "Users", new{ id = Model.Username })){
 	<fieldset>
@@ -18,7 +18,7 @@
 		</p>
 		<p>
 			<label for="cognome">Cognome:</label>
-			@Html.TextArea("Cognome", Model.Cognome)
+			@Html.TextBox("Cognome", Model.Cognome)
 		</p>
         <p>
 			<label for="area">Area:</label>

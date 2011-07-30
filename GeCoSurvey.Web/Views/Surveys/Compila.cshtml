@@ -48,7 +48,7 @@
             <div class="question">
                 <label>@testo</label>
             </div>
-            <table>
+            <table class="gradi">
                 @RenderSubQuestion(idQuestion, subquestions)
             </table>
         </li>
@@ -56,14 +56,14 @@
 }
 
 @helper RenderSubQuestion(string idQuestion, IEnumerable<SubQuestion> subquestions)
-    {
-        int progressivo = 0;
-        
-        foreach (var s in subquestions)
+    {        
+        var subQuestionsOrdered = subquestions.OrderBy(sub => sub.LivelloConoscenzaId);
+
+        foreach (var s in subQuestionsOrdered)
         {
             string idSubQuestion = s.Id.ToString();
             string testo = s.Testo;
-            string rowClass = "rigaGrado" + progressivo++;
+            string rowClass = "rigaGrado" + (s.LivelloConoscenzaId-1);
             
             @*<span class="subquestion">
                 <input type='radio' id='q@(idSubQuestion)' name='c@(idQuestion)' value='@idSubQuestion' />@testo<br />

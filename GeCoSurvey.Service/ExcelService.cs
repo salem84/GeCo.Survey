@@ -158,6 +158,8 @@ namespace GeCoSurvey.Service
                         string cognome = GetCellValue(worksheet, wbPart, "B"+curRow);
                         string nome = GetCellValue(worksheet, wbPart, "C" + curRow);
                         string matricola = GetCellValue(worksheet, wbPart, "D" + curRow);
+                        if (string.IsNullOrEmpty(matricola))
+                            matricola = "TEMP";
                         string area = "";
 
                         Dictionary<string, string> profile = new Dictionary<string, string>();
@@ -169,6 +171,8 @@ namespace GeCoSurvey.Service
                         profile.Add("Area", area);
 
                         userService.CreaUtente(username, profile, true);
+                        
+                        curRow++;
                     }
                     else
                     {
@@ -193,11 +197,18 @@ namespace GeCoSurvey.Service
             SharedStringTablePart sstPart = wbPart.GetPartsOfType<SharedStringTablePart>().First();
             SharedStringTable ssTable = sstPart.SharedStringTable;
 
-            Row row = worksheet.Descendants<Row>().Single(r => r.RowIndex == targetRow);
-
             try
             {
-                Cell cell = row.Descendants<Cell>().Single(c => targetCell.Equals(c.CellReference));
+
+                Row row = worksheet.Descendants<Row>().SingleOrDefault(r => r.RowIndex == targetRow);
+
+                //non ho la riga
+                if (row == null)
+                    return result;
+
+                Cell cell = row.Descendants<Cell>().SingleOrDefault(c => targetCell.Equals(c.CellReference));
+                if (cell == null)
+                    return result;
 
                 if (cell.DataType != null && cell.DataType == CellValues.SharedString)
                 {

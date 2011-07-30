@@ -395,7 +395,7 @@ ol.questionario li
 .header .risorsaLabel
 {
     font-variant:small-caps;   
-    font-size:larger;
+    font-size:large;
     font-weight:bold;
     padding-left:10px;
 }
@@ -403,7 +403,8 @@ ol.questionario li
 .header .risorsaNome
 {
     padding-left:20px;
-    font-style:italic
+    font-style:italic;
+    font-size:large;
 }
         
 .header
@@ -414,12 +415,16 @@ ol.questionario li
 
 /* Stili per la tabella dei gradi
 ----------------------------------------------------------*/
-        
-table.gradi
+
+#istruzioni table.gradi
 {
     width: 70%;
     margin-left:auto;
     margin-right:auto;
+}
+       
+table.gradi
+{
     border:2px solid #066BB0;
     border-collapse: collapse;
 }
@@ -435,21 +440,28 @@ table.gradi td
     text-align:center;
     font-weight:bold;
 }
+
+.colonnaIcone
+{
+    width:50px;
+    text-align:center;
+}
+
 .rigaGrado1
 {
-    background-color:#FFFF99;
+    background-color:#DBE5F1;
 }
 .rigaGrado2
 {
-    background-color:#FFFF00;
+    background-color:#B8CCE4;
 }
 .rigaGrado3
 {
-    background-color:#FF0000;
+    background-color:#95B3D7;
 }
 .rigaGrado4
 {
-    background-color:#66FF66;
+    background-color:#769DCC;
 }
 
 label.error

@@ -24,8 +24,29 @@ namespace GeCoSurvey.Data
             InsertCompetenzeHrDiscrezionali();
             InsertCompetenzeHrComportamentali();
             InsertAltro();
-            
-            
+
+            //Key Roles Strategic Support
+            var ruoliInit = new RuoliDefault(context);
+            ruoliInit.SalvaResponsabileUfficioTecnico();
+            ruoliInit.SalvaResponsabileImpiantiMobiliMacchineImpianti();
+            ruoliInit.SalvaResponsabileControlliLaboratorio();
+            ruoliInit.SalvaCostController();
+            ruoliInit.SalvaContabilizzatoreSenior();
+
+            //Key Roles Competitive Advantage
+            ruoliInit.SalvaResponsabileUfficioAcquisti();
+            ruoliInit.SalvaDirettoreCantiereManutenzione();
+            ruoliInit.SalvaDirettoreCantiereInfrastrutture();
+            ruoliInit.SalvaCapoCantiereManutenzione();
+            ruoliInit.SalvaCapoCantiereInfrastrutture();
+            ruoliInit.SalvaBuyerSeniorSede();
+            ruoliInit.SalvaBuyerSeniorCantiere();
+
+            var dipendentiInit = new DipendentiDefault(context);
+            dipendentiInit.SalvaDipendente1();
+            dipendentiInit.SalvaDipendente2();
+            dipendentiInit.SalvaDipendente3();
+            dipendentiInit.SalvaDipendente4();
         }
 
         private void InsertParametriDefault()

@@ -51,7 +51,7 @@ namespace GeCoSurvey.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("", "Username o password non valida.");
                 }
             }
 
@@ -148,7 +148,7 @@ namespace GeCoSurvey.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError("", "La password corrente non è corretta o la nuova password non è valida.");
                 }
             }
 

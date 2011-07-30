@@ -6,25 +6,40 @@
 <h2>Surveys</h2>
 
 <div id="surveyList">
-<ul>
+
+<table>
+<thead>
+<tr>
+<th style="width:20px">#</th>
+<th style="width:100px">Titolo</th>
+<th style="width:200px">Stato</th>
+</tr>
+</thead>
+
 @foreach (var surveyState in Model)
 {
     //UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
     //string url = u.Action("Compila", "Surveys", new {id = "1"});
     
-    <li>
-    @surveyState.Survey.Id - @surveyState.Survey.Name 
-    
-    @if (!surveyState.Compilato)
+    <tr>
+        <td>@surveyState.Survey.Id</td>
+        <td>@surveyState.Survey.Name</td> 
+        <td>@DisplayStato(surveyState)</td>
+    </tr>
+}
+</table>
+
+</div>
+
+@helper DisplayStato(GeCoSurvey.Domain.SurveyWithState surveyState)
+{
+    if (!surveyState.Compilato)
     { 
         @Html.ActionLink("Compila", "Compila", "Surveys", new { id = surveyState.Survey.Id }, null);
     }
     else
     {
-        <span> [compilato]</span>
+        @("Compilato")
     }
-    </li>
-}
-</ul>
 
-</div>
+}

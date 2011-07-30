@@ -1,4 +1,5 @@
-﻿@using GeCoSurvey.Data;
+﻿@using GeCoSurvey.Web.Helpers;
+@using GeCoSurvey.Data;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -13,12 +14,16 @@
     string nome = ViewBag.NomeCompleto;
     if (ViewBag.Ruolo == Tipologiche.Ruoli.DIPENDENTI)
     {
-        @Html.Partial("_HeaderAutoValutazione", nome);
+        @Html.Partial("_HeaderAutoValutazione", new { ShowIstruzioni = true, User = "" }.ToExpando());
         @Html.Partial("_IstruzioniAutoValutazione");
+                                                   
+        @Html.ActionLink("Compila", "Index", "Surveys", new { area = "" }, null)
     }
     else if (ViewBag.Ruolo == Tipologiche.Ruoli.RESPONSABILI)
     {
-        @Html.Partial("_HeaderEteroValutazione");
+        @Html.Partial("_HeaderEteroValutazione", new { ShowIstruzioni = true, User = "" }.ToExpando());
         @Html.Partial("_IstruzioniEteroValutazione");
+                                                    
+        @Html.ActionLink("Revisiona", "Visualizza", "Surveys", new { area = "" }, new { @class = "button" })
     }
 }
