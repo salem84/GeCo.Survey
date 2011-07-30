@@ -17,13 +17,15 @@
         @Html.Partial("_HeaderAutoValutazione", new { ShowIstruzioni = true, User = "" }.ToExpando());
         @Html.Partial("_IstruzioniAutoValutazione");
                                                    
-        @Html.ActionLink("Compila", "Index", "Surveys", new { area = "" }, null)
+        @Html.ActionLink("Compila", "Index", "Surveys", new { area = "" }, new { @class = "button" })
     }
     else if (ViewBag.Ruolo == Tipologiche.Ruoli.RESPONSABILI)
     {
         @Html.Partial("_HeaderEteroValutazione", new { ShowIstruzioni = true, User = "" }.ToExpando());
         @Html.Partial("_IstruzioniEteroValutazione");
-                                                    
-        @Html.ActionLink("Revisiona", "Visualizza", "Surveys", new { area = "" }, new { @class = "button" })
+
+        <div class="btnContainer">
+            @Html.ActionLink("Revisiona", "Visualizza", "Surveys", new { area = "" }, new { @class = "button" })
+        </div>
     }
 }

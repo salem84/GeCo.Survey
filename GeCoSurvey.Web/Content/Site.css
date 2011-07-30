@@ -468,3 +468,36 @@ label.error
 {
     padding-left:10px;
 }
+
+.btnContainer
+{
+    margin-top:50px;
+    text-align:center;
+}
+
+#legenda
+{
+    margin:20px;
+    margin-bottom:60px;
+    padding-left:50px;
+}
+
+#legenda li
+{
+    list-style:none;
+}
+
+#legenda span
+{
+    padding-left:20px;
+}
+
+/*Stile per i tooltip, utilizzato dal js */
+.tooltip{
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 3;
+   display: none;
+}
+            

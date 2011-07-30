@@ -27,7 +27,13 @@
     //@Html.HiddenFor(model => model.Id);
     @Html.Partial("_HeaderEteroValutazione", new { ShowIstruzioni = false, User = Model.NomeRisorsa }.ToExpando())
     
-    <br /><br />
+    <div id="legenda">
+        <ul>
+            <li><img src="@Url.Content("~/Content/star.png")" alt="star" /><span>Valore Atteso</span></li>
+            <li><img src="@Url.Content("~/Content/autoval.png")" alt="autoval" /><span>Questionario di Autovalutazione</span></li>
+        </ul>        
+    </div>
+    
     <ol class="questionario">
         @RenderQuestionWithAnswer(Model.DomandeConRisposte)
     </ol>
