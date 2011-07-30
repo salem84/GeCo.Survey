@@ -8,7 +8,7 @@ using System.IO;
 
 namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles="Administrators")]
+    [Authorize(Roles="Administrators")]
     public class LoadController : Controller
     {
         private readonly ExcelService excelService;

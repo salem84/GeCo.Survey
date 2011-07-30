@@ -29,6 +29,7 @@ namespace GeCoSurvey.Web.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrators")]
         public ActionResult Admin()
         {
             return View();

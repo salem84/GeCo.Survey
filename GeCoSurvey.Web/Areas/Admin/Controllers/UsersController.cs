@@ -12,6 +12,7 @@ using GeCoSurvey.Web.Areas.Admin.Models.Users;
 
 namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class UsersController : Controller
     {
         //

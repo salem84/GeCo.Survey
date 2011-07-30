@@ -9,10 +9,12 @@
 @foreach (var ss in Model)
 { 
     <li>
-    <span><b>Utente: </b>@ss.User </span>
-    <span><b>Stato: </b>@(ss.Completato ? "Completato" : "Non completato")</span>
+    <span><b>Utente: </b>@ss.User </span><br />
+    <span><b>Stato: </b>@DisplayStato(ss)</span><br />
+
     
-    @if (ss.Completato)
+    @*se è stato completato ma non revisionato *@
+    @if (ss.Completato && !ss.Revisionato)
     {
         @Html.ActionLink("Revisiona", "Revisiona", "Surveys", new { id = ss.Id }, null);
     }
@@ -21,3 +23,23 @@
 }
 
 </ul>
+
+
+@helper DisplayStato(GeCoSurvey.Domain.SurveySession session)
+{
+    if (!session.Completato)
+    {
+        @("Non completato")
+    }
+    else
+    {
+        if (!session.Revisionato)
+        {
+            @("Completato");
+        }
+        else
+        { 
+            @("Revisionato");
+        }
+    }
+}

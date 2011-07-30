@@ -99,6 +99,7 @@ header h1, #header h1 {
     line-height: 2em;
     font-size: 32px !important;
     text-shadow: 1px 1px 2px #111;
+    display:inline;
 }
 
 #main {
@@ -251,6 +252,12 @@ div#title {
     display: block;
     float: left;
     text-align: left;
+}
+
+#title img
+{
+    vertical-align:middle;
+    padding-right:30px;
 }
 
 #logindisplay {

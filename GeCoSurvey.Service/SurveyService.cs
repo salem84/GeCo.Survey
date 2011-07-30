@@ -110,6 +110,9 @@ namespace GeCoSurvey.Service
                 session.Risposte.Add(r);
             }
 
+            //La segno come non revisionata
+            session.Revisionato = false;
+
             reposSurveySession.Add(session);
 
             unityOfWork.Commit();
@@ -163,6 +166,11 @@ namespace GeCoSurvey.Service
             }
 
             dipendentiService.SalvaDipendente(dipendente);
+
+            //devo segnare la surveysession come revisionata
+            session.Revisionato = true;
+            reposSurveySession.Update(session);
+            unityOfWork.Commit();
         }
 
         public SurveyWithAnswers GetSurveyWithAnswers(int idSurveySession)
@@ -209,12 +217,14 @@ namespace GeCoSurvey.Service
 
             //Altri non hanno ancora fatto nulla
             IEnumerable<string> utentiSenzaQuestionario = dipendenti.Except(utentiConQuestionario);
-            //Creo quindi delle sessions fittizie per la View
+
+            //Creo quindi delle sessions fittizie per la View, 
+            //scartando l'utente responsabile che non ha sicuramente compilato il questionario 
             var sessionsNonCompletate = from d in utentiSenzaQuestionario
+                                        where d != responsabile
                                         select new SurveySession
                                         {
-                                            User = d,
-
+                                            User = d
                                         };
             //Faccio l'unione di tutto
             var sessions = sessionsCompletate.Union(sessionsNonCompletate);

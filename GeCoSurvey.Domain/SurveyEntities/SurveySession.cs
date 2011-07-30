@@ -9,12 +9,15 @@ namespace GeCoSurvey.Domain
     {
         public int Id { get; set; }
 
+        //Contiene l'username dell'utente che ha compilato il questionario
         public string User { get; set; }
 
         public virtual Survey Survey { get; set; }
         public int SurveyId { get; set; }
 
         public virtual ICollection<Answer> Risposte { get; set; }
+
+        public bool Revisionato { get; set; }        
 
         public bool Completato
         {

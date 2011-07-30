@@ -1,6 +1,6 @@
 ﻿@model GeCoSurvey.Web.Areas.Admin.Models.Users.CreateUserViewModel
 @{
-	ViewBag.Title = "Create New User";
+	ViewBag.Title = "Crea Nuovo Utente";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,6 +12,6 @@
 	@using(Html.BeginForm("CreateUser", "Users")){ 
 		@Html.ValidationSummary(true)
 	 	@Html.EditorForModel()
-		<input type="submit" value="Create" />
+		<input type="submit" value="Crea" />
 	} 
 </div>

@@ -11,7 +11,8 @@
     <div class="page">
         <header>
             <div id="title">
-                <h1>Applicazione GeCo Survey</h1>
+                <img src="@Url.Content("~/Content/pavimental.png")" alt="logo" />
+                <h1>Questionari Online</h1>
             </div>
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
@@ -23,7 +24,7 @@
                     <li>@Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, null)</li>
                     @*<li>@Html.ActionLink("Compila1", "Compila", "Surveys", new { id = "1" }, null)</li>*@
                     @*<li>@Html.ActionLink("Revisiona1", "Revisiona", "Surveys", new { id = "1" }, null)</li>*@
-                    <li>@Html.ActionLink("Visualizza", "Visualizza", "Surveys")</li>
+                    <li>@Html.ActionLink("Da Revisionare", "Visualizza", "Surveys")</li>
                     <li>@Html.ActionLink("Amministrazione", "Admin", "Home", new { area = "" }, null)</li>
                 </ul>
             </nav>
