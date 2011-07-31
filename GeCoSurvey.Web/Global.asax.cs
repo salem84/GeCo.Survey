@@ -10,6 +10,7 @@ using Microsoft.Practices.Unity;
 using GeCoSurvey.Web.IoC;
 using GeCoSurvey.Service;
 using GeCoSurvey.Data.Infrastructure;
+using System.Configuration;
 
 namespace GeCoSurvey.Web
 {
@@ -40,8 +41,12 @@ namespace GeCoSurvey.Web
             AreaRegistration.RegisterAllAreas();
 
             //Inizializzazione DB
-            Database.SetInitializer(new SurveyContextInitializer());
-            //Database.SetInitializer<SurveyContext>(null);
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["SetInitializerDb"]))
+            {
+                //Ricordarsi di cancellare la tabella EdmMetadata altrimenti non funziona GecoClient
+                Database.SetInitializer(new SurveyContextInitializer());
+                //Database.SetInitializer<SurveyContext>(null);
+            }
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

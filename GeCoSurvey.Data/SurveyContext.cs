@@ -39,7 +39,7 @@ namespace GeCoSurvey.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
+            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
 
             CreaModelloComune(modelBuilder);
 

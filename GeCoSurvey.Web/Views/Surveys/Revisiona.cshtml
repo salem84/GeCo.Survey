@@ -4,20 +4,7 @@
     ViewBag.Title = "Revisiona";
 }
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("form").validate({
-            messages: {
-                required: "Prova"
-            },
-            errorPlacement: function (error, element) {
-                //var t = $(element).closest("table").siblings("span");
-                var t = $(element).closest("li").find("h3");
-                error.insertAfter(t);
-            }
-        });
-    });
-</script>
+<script src="@Url.Content("~/Scripts/questionario.js")" type="text/javascript"></script>
 
 <h2>Revisiona</h2>
 
@@ -38,7 +25,9 @@
         @RenderQuestionWithAnswer(Model.DomandeConRisposte)
     </ol>
 
-    <input type="submit" value="Invia" />
+    <div class="btnContainer">
+        <input type="submit" value="Invia" />
+    </div>
 }
 
 
