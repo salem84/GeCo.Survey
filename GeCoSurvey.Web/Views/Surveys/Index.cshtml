@@ -10,8 +10,8 @@
 <table>
 <thead>
 <tr>
-<th style="width:20px">#</th>
-<th style="width:100px">Titolo</th>
+<th style="width:20px;visibility:hidden">#</th>
+<th style="width:400px">Titolo</th>
 <th style="width:200px">Stato</th>
 </tr>
 </thead>
@@ -22,7 +22,7 @@
     //string url = u.Action("Compila", "Surveys", new {id = "1"});
     
     <tr>
-        <td>@surveyState.Survey.Id</td>
+        <td style="visibility:hidden">@surveyState.Survey.Id</td>
         <td>@surveyState.Survey.Name</td> 
         <td>@DisplayStato(surveyState)</td>
     </tr>

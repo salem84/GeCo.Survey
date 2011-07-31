@@ -11,8 +11,8 @@ namespace GeCoSurvey.Data
     public class SurveyContext : DbContext
     {
         // public MyFinanceContext() : base("MyFinance") { }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        //public DbSet<User> Users { get; set; }
+        //public DbSet<Role> Roles { get; set; }
 
         public DbSet<Dipendente> Dipendenti { get; set; }
         public DbSet<Ruolo> Ruoli { get; set; }
@@ -43,7 +43,7 @@ namespace GeCoSurvey.Data
 
             CreaModelloComune(modelBuilder);
 
-            modelBuilder.Entity<User>()
+            /*modelBuilder.Entity<User>()
                 .HasMany(u => u.Roles)
                 .WithMany(r => r.Users)
                 .Map(m =>
@@ -51,7 +51,7 @@ namespace GeCoSurvey.Data
                     m.ToTable("RoleMemberships");
                     m.MapLeftKey("UserName");
                     m.MapRightKey("RoleName");
-                });
+                });*/
 
             modelBuilder.Entity<SurveySession>()
                 .HasRequired(session => session.Survey)

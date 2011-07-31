@@ -16,7 +16,7 @@ namespace GeCoSurvey.Web.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 3)]
         [DataType(DataType.Password)]
         [Display(Name = "Nuova password")]
         public string NewPassword { get; set; }
@@ -54,7 +54,7 @@ namespace GeCoSurvey.Web.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} deve essere almeno lunga {2} caratteri.", MinimumLength = 3)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

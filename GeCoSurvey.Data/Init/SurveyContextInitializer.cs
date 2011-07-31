@@ -15,12 +15,12 @@ namespace GeCoSurvey.Data
             (new InitializeDB(context)).InitalizeAll();
             
             
-            var roles = new List<Role>{
+            /*var roles = new List<Role>{
                 new Role{RoleName = "Administrator"},
                 new Role{RoleName = "User"}               
             };
 
-            roles.ForEach(r => context.Roles.Add(r));
+            roles.ForEach(r => context.Roles.Add(r));*/
 
             var survey = new Survey { Name = "Test", Active = true };
             context.Surveys.Add(survey);
