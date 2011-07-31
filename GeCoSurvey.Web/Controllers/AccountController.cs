@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using GeCoSurvey.Web.Models;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 
 namespace GeCoSurvey.Web.Controllers
 {
@@ -14,9 +15,15 @@ namespace GeCoSurvey.Web.Controllers
         private readonly string ROLE_PRIMO_ACCESSO = "PrimoAccesso";
         private readonly string ROLE_DIPENDENTI = "Dipendenti";
 
+        private readonly LogWriter logger;
+
+        public AccountController(LogWriter logger)
+        {
+            this.logger = logger;
+        }
+
         //
         // GET: /Account/LogOn
-
         public ActionResult LogOn()
         {
             return View();
@@ -36,9 +43,12 @@ namespace GeCoSurvey.Web.Controllers
 
                     if (Roles.IsUserInRole(model.UserName, ROLE_PRIMO_ACCESSO))
                     {
+                        logger.Write(string.Format("L'utente {0} ha effettuato il primo accesso", model.UserName));
                         return RedirectToAction("ChangePassword", "Account");
                     }
-                    
+
+                    logger.Write(string.Format("L'utente {0} ha effettuato il login", model.UserName));
+
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -136,6 +146,8 @@ namespace GeCoSurvey.Web.Controllers
                     
                     //Lo aggiungo al ruolo Dipendenti
                     Roles.AddUserToRole(currentUser.UserName, ROLE_DIPENDENTI);
+
+                    logger.Write(string.Format("L'utente {0} ha cambiato la pw ed è stato aggiunto al ruolo Dipendenti", currentUser.UserName));
                 }
                 catch (Exception)
                 {

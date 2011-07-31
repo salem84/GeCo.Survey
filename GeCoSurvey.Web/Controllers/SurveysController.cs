@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using GeCoSurvey.Service;
 using GeCoSurvey.Domain;
 using GeCoSurvey.Web.Models;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 
 namespace GeCoSurvey.Web.Controllers
 {
@@ -13,12 +14,16 @@ namespace GeCoSurvey.Web.Controllers
     {
         private readonly ISurveyService surveyService;
         private readonly IDipendentiService dipendentiService;
+        private readonly LogWriter logger;
 
         public SurveysController(ISurveyService surveyService,
-            IDipendentiService dipendentiService)
+            IDipendentiService dipendentiService,
+            LogWriter logger
+            )
         {
             this.surveyService = surveyService;
             this.dipendentiService = dipendentiService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -31,6 +36,8 @@ namespace GeCoSurvey.Web.Controllers
             ViewBag.Message = "Ciao";
 
             string username = User.Identity.Name;
+
+            logger.Write(string.Format("L'utente {0} ", username));
 
             //Segno per ogni survey, quali sono stati già compilati dall'utente
             var surveys = surveyService.GetSurveysWithState(username, true);
@@ -87,7 +94,7 @@ namespace GeCoSurvey.Web.Controllers
 
             surveyService.SalvaSurvey(id, User.Identity.Name, risposte);
 
-
+            logger.Write(string.Format("L'utente {0} ha compilato il questionario", User.Identity.Name));
             return RedirectToAction("Success");
         }
 
@@ -134,7 +141,7 @@ namespace GeCoSurvey.Web.Controllers
 
             surveyService.SalvaSurveyRevisionato(id, risposte);
 
-
+            logger.Write(string.Format("L'utente {0} ha revisionato il questionario", User.Identity.Name));
 
             return RedirectToAction("Success");
         }

@@ -11,6 +11,7 @@ using GeCoSurvey.Web.IoC;
 using GeCoSurvey.Service;
 using GeCoSurvey.Data.Infrastructure;
 using System.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity;
 
 namespace GeCoSurvey.Web
 {
@@ -73,12 +74,12 @@ namespace GeCoSurvey.Web
             .RegisterType<IDipendentiService, DipendentiService>(new HttpContextLifetimeManager<IDipendentiService>())
             .RegisterType<ISurveyService, SurveyService>(new HttpContextLifetimeManager<ISurveyService>())
             .RegisterType<IUserService, UserService>(new HttpContextLifetimeManager<IUserService>())
-            .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>));
+            .RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>))
                 //.RegisterType<ISurveyRepository, SurveyRepository>(new HttpContextLifetimeManager<ISurveyRepository>())
-            //.RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>());
-            //.RegisterType<IRoleRepository, RoleRepository>(new HttpContextLifetimeManager<IRoleRepository>())
-            //.RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());
-
+                //.RegisterType<IUserRepository, UserRepository>(new HttpContextLifetimeManager<IUserRepository>());
+                //.RegisterType<IRoleRepository, RoleRepository>(new HttpContextLifetimeManager<IRoleRepository>())
+                //.RegisterType<ISecurityService, SecurityService>(new HttpContextLifetimeManager<ISecurityService>());
+            .AddNewExtension<EnterpriseLibraryCoreExtension>();
             
             return container;
         }
