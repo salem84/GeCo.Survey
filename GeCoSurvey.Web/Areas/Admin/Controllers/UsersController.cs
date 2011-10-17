@@ -84,11 +84,13 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
 
         public ViewResult Role(string id)
         {
-            return View(new RoleViewModel
+            var model = new RoleViewModel
             {
                 Role = id,
                 Users = _rolesService.FindUserNamesByRole(id).Select(username => _userService.Get(username))
-            });
+            };
+            
+            return View(model);
         }
 
         public ViewResult Details(Guid id)
