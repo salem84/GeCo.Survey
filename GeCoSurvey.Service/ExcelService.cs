@@ -160,11 +160,12 @@ namespace GeCoSurvey.Service
                         string matricola = GetCellValue(worksheet, wbPart, "D" + curRow);
                         if (string.IsNullOrEmpty(matricola))
                             matricola = "TEMP";
-                        string area = "";
+                        string area = GetCellValue(worksheet, wbPart, "E" + curRow);
+                        string email = GetCellValue(worksheet, wbPart, "F" + curRow);
 
                         Dictionary<string, string> profile = new Dictionary<string, string>();
 
-                        profile.Add("Email", username + "@pavimental.fake");
+                        profile.Add("Email", email);
                         profile.Add("Matricola", matricola);
                         profile.Add("Nome", nome);
                         profile.Add("Cognome", cognome);
