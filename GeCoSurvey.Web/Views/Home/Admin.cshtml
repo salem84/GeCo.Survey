@@ -2,12 +2,13 @@
     ViewBag.Title = "Admin";
 }
 
-<h2>Admin</h2>
+<h2>Amministrazione</h2>
 
 <ul>
     <li>@Html.ActionLink("Carica Survey da Excel", "CaricaSurvey", "Load", new { area = "Admin" }, null)</li>
     <li>@Html.ActionLink("Carica Utenti", "CaricaUtenti", "Load", new { area = "Admin" }, null)</li>
     @*<li>@Html.ActionLink("Gestione Utenti Responsabili", "CaricaSurvey", "Admin")</li>*@
     <li>@Html.ActionLink("Gestione Utenti", "Index", "Users", new { area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Gestione Sondaggi", "Index", "AdvSurveys", new { area = "Admin" }, null)</li>
 </ul>
 

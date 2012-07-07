@@ -9,6 +9,7 @@ using Microsoft.Practices.Unity;
 using System.Net.Mail;
 using System.Web.Security;
 using GeCoSurvey.Web.Areas.Admin.Models.Users;
+using PagedList;
 
 namespace GeCoSurvey.Web.Areas.Admin.Controllers
 {
@@ -55,8 +56,59 @@ namespace GeCoSurvey.Web.Areas.Admin.Controllers
             _smtpClient = smtpClient;
         }
 
-        public ViewResult Index(int? page)
+        
+
+        public ViewResult Index(int? page, string nome, string cognome)
         {
+            if (!string.IsNullOrWhiteSpace(nome) || !string.IsNullOrWhiteSpace(cognome))
+            {
+                // prendo tutti gli utenti
+                int count = _userService.TotalUsers;
+                var totalUsers = _userService.FindAll(0, count);
+
+                // mi leggo i profili
+                var profiles = from user in totalUsers
+                               select new
+                               {
+                                   profilo = _userServiceGeco.GetUtente(user.UserName),
+                                   user = user
+                               };
+
+                var filteredUsers = profiles;
+
+                // controllo se è stata inserita la stringa di filtro per la ricerca del nome
+                if (!string.IsNullOrWhiteSpace(nome))
+                {
+                    filteredUsers = from u in filteredUsers
+                                    where u.profilo.Nome.ToLower().IndexOf(nome.ToLower()) != -1
+                                    select u;
+                }
+
+                // controllo se è stata inserita la stringa di filtro per la ricerca del cognome
+                if (!string.IsNullOrWhiteSpace(cognome))
+                {
+                    filteredUsers = from u in filteredUsers
+                                    where u.profilo.Cognome.ToLower().IndexOf(cognome.ToLower()) != -1
+                                    select u;
+                }
+
+                // estraggo gli utenti
+                var users = filteredUsers.Select(x => x.user);
+
+                int pagesize = Math.Max(users.Count(), 1);
+                // faccio questa trasformazione in modo da riutilizzare la stessa vista
+                return View(new IndexViewModel
+                {
+                    Users = new PagedList<MembershipUser>(users, 0, pagesize),
+                    Roles = _rolesService.Enabled
+                        ? _rolesService.FindAll()
+                        : Enumerable.Empty<string>(),
+                    IsRolesEnabled = _rolesService.Enabled
+                });
+            }
+
+            //Non ho fatto nessun filtro, ritorno i risultati paginati
+
             return View(new IndexViewModel
             {
                 Users = _userService.FindAll(page ?? 0, PageSize),

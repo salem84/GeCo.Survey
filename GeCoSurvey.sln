@@ -1,6 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C9FAE22-3BED-4454-A894-B18ED882BAA6}"
+	ProjectSection(SolutionItems) = preProject
+		GeCoSurvey.vsmdi = GeCoSurvey.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeCoSurvey.Web", "GeCoSurvey.Web\GeCoSurvey.Web.csproj", "{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeCoSurvey.Domain", "GeCoSurvey.Domain\GeCoSurvey.Domain.csproj", "{62C3E7C6-E309-41D1-8ADF-2196FEF64267}"
@@ -13,13 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLTableProfileProviderCS",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeCoSurvey.Test", "GeCoSurvey.Test\GeCoSurvey.Test.csproj", "{21FDBBC9-8E46-4D85-BF3D-320330E06127}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C9FAE22-3BED-4454-A894-B18ED882BAA6}"
-	ProjectSection(SolutionItems) = preProject
-		GeCoSurvey.vsmdi = GeCoSurvey.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership", "MvcMembership\MvcMembership.csproj", "{C9D7F653-E589-44CE-9D41-89821F4F9E4E}"
 EndProject
 Global
@@ -31,10 +31,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62C3E7C6-E309-41D1-8ADF-2196FEF64267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62C3E7C6-E309-41D1-8ADF-2196FEF64267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C3E7C6-E309-41D1-8ADF-2196FEF64267}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,14 +51,14 @@ Global
 		{B42E1C34-93C0-4256-AB3D-90BAFC8B13E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B42E1C34-93C0-4256-AB3D-90BAFC8B13E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B42E1C34-93C0-4256-AB3D-90BAFC8B13E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21FDBBC9-8E46-4D85-BF3D-320330E06127}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A6E595-64DD-42CB-B6B2-CBC071DAD1F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,73 @@
+﻿@using GeCoSurvey.Web.Helpers;
+@model GeCoSurvey.Domain.SurveyWithAnswers
+@{
+    ViewBag.Title = "VisualizzaQuestionario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Visualizza Questionario</h2>
+
+<div id="legenda">
+    <ul>
+        <li><img src="@Url.Content("~/Content/star.png")" alt="star" /><span>Valore Atteso</span></li>
+        <li><img src="@Url.Content("~/Content/autoval.png")" alt="autoval" /><span>Questionario di Autovalutazione</span></li>
+    </ul>        
+</div>
+
+<ol class="questionario">
+    @RenderQuestionWithAnswer(Model.DomandeConRisposte)
+</ol>
+
+
+@using GeCoSurvey.Domain;
+@using GeCoSurvey.Web.Models;
+@helper RenderQuestionWithAnswer(IEnumerable<QuestionWithAnswer> domande)
+    {
+        foreach (var d in domande)
+        {
+            string testo = d.Question.Testo;
+            string idQuestion = d.Question.Id.ToString();
+            int idRispostaData = d.RispostaDataId;
+            int idValoreAtteso = d.Question.ValoreAttesoId;
+            IEnumerable<SubQuestion> subquestions = d.Question.Children;
+        
+        <li>
+            <div class="question">
+                <label>@testo</label>
+                <table class="gradi">
+                    @RenderSubQuestionWithAnswer(idQuestion, subquestions, idRispostaData, idValoreAtteso)
+                </table>
+            </div>
+        </li>
+        
+        }
+}
+
+@helper RenderSubQuestionWithAnswer(string idQuestion, IEnumerable<SubQuestion> subquestions, int idRispostaData, int idValoreAtteso)
+    {
+        var subQuestionsOrdered = subquestions.OrderBy(sub => sub.LivelloConoscenzaId);
+        
+        foreach (var s in subQuestionsOrdered)
+        {
+            string idSubQuestion = s.Id.ToString();
+            string testo = s.Testo;
+            
+            string rowClass = "rigaGrado" + (s.LivelloConoscenzaId - 1);
+            
+        <tr class="@rowClass">
+            <td class="colonnaIcone">
+            @if (s.Id == idRispostaData)
+            {
+                <img src="@Url.Content("~/Content/autoval.png")" alt="autoval" />   
+            }
+            @if (s.LivelloConoscenzaId == idValoreAtteso)
+            {
+                <img src="@Url.Content("~/Content/star.png")" alt="star" />
+            }
+            </td>
+            <td class="colonnaGrado">@Html.RadioButton("c" + idQuestion, idSubQuestion, new { @class = "required", @disabled="disabled" })</td>
+            <td>@testo</td>
+        </tr>
+        
+        }
+}

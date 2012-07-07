@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminazione Sondaggio</h2>
+
+@if(ViewBag.Result)
+{
+<span>Il sondaggio è stato eliminato correttamente</span>
+}
+else
+{
+<span>Errore</span>
+}
+
+<span>@Html.ActionLink("Torna a Gestione Sondaggi", "Index", "AdvSurveys", new { area = "Admin" }, null)</span>

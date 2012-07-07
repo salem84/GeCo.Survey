@@ -30,7 +30,7 @@ namespace GeCoSurvey.Web.Controllers
         /// Visualizza i questionari da compilare
         /// </summary>
         /// <returns></returns>
-         [Authorize(Roles = "Dipendenti, Administrators")]
+        [Authorize(Roles = "Dipendenti, Administrators")]
         public ActionResult Index()
         {
             ViewBag.Message = "Ciao";
@@ -150,8 +150,5 @@ namespace GeCoSurvey.Web.Controllers
         {
             return View();
         }
-
-
-        
     }
 }

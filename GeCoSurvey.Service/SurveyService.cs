@@ -23,6 +23,10 @@ namespace GeCoSurvey.Service
         void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte);
 
         IEnumerable<SurveySession> GetSurveySessionsByResponsabile(string responsabile);
+        
+        //Nuove funzionalità
+        IEnumerable<SurveySession> GetAllSurveySession();
+        void EliminaSurveySession(int surveySessionId);
     }
 
     public class SurveyService : ISurveyService
@@ -130,9 +134,7 @@ namespace GeCoSurvey.Service
         {
             var result = reposSurveySession.Get(ss => ss.Id == idSurveySession);
             return result;
-        }
-
-        
+        }       
 
         public void SalvaSurveyRevisionato(int idSurveySession, List<Answer> risposte)
         {
@@ -237,6 +239,18 @@ namespace GeCoSurvey.Service
             var sessions = sessionsCompletate.Union(sessionsNonCompletate);
 
             return sessions;
+        }
+
+        public IEnumerable<SurveySession> GetAllSurveySession()
+        {
+            var result = reposSurveySession.GetAll();
+            return result;
+        }
+
+        public void EliminaSurveySession(int surveySessionId)
+        {
+            reposSurveySession.Delete(s => s.Id == surveySessionId);
+            unityOfWork.Commit();
         }
     }
 }

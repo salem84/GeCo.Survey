@@ -12,6 +12,21 @@
 	
 <h3 class="mvcMembership">Utenti (@Html.ActionLink("Nuovo", "CreateUser", "Users"))</h3>
 <div class="mvcMembership-allUsers">
+    @using(Html.BeginForm("Index", "Users", FormMethod.Get)){
+    <fieldset>
+        <legend>Ricerca</legend>
+        <p></p>
+            <div style="width:20px;">Nome:</div>
+            @Html.TextBox("nome")
+        <p></p>
+            <div style="width:20px;">Cognome:</div>
+            @Html.TextBox("cognome")
+        <p></p>
+                
+        <input type="submit" value="Cerca" />
+        </fieldset>
+    }
+
 @if(Model.Users.Count > 0){
 	<ul class="mvcMembership mvcMembership-users">
 		@foreach(var user in Model.Users){
@@ -46,7 +61,10 @@
 		</li>
 		}
 	</ul>
-	@Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page }))
+    if(Request.QueryString["cognome"] == null && Request.QueryString["nome"] == null)
+    {
+	    @Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page }))
+    }
 }else{
 	<p>Nessun utente registrato.</p>
 }

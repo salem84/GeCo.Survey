@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GeCoSurvey.Domain.SurveySession>
+@{
+    ViewBag.Title = "EliminaQuestionario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Questionari</h2>
+
+<div id="surveyList">
+
+<table>
+<thead>
+<tr>
+<th style="width:20px;visibility:hidden">#</th>
+<th style="width:400px">Titolo</th>
+<th style="width:400px">Nome</th>
+<th style="width:200px" colspan="2">Azione</th>
+</tr>
+</thead>
+
+@foreach (var surveySession in Model)
+{
+    //UrlHelper u = new UrlHelper(this.ViewContext.RequestContext);
+    //string url = u.Action("Compila", "Surveys", new {id = "1"});
+    
+    <tr>
+        <td style="visibility:hidden">@surveySession.Id</td>
+        <td>@surveySession.Survey.Name</td> 
+        <td>@surveySession.User</td>
+        <td>@Html.ActionLink("Visualizza", "VisualizzaSurvey", "AdvSurveys", new { id = surveySession.Id, Area="Admin" }, null)</td>
+        <td>@DisplayElimina(surveySession)</td>
+    </tr>
+}
+</table>
+
+</div>
+
+@helper DisplayElimina(GeCoSurvey.Domain.SurveySession surveySession)
+{
+    if (!surveySession.Revisionato)
+    { 
+        @Html.ActionLink("Elimina", 
+        "EliminaSurveySession", 
+        "AdvSurveys", 
+        new { id = surveySession.Id, Area="Admin" }, 
+        new { onclick = "return confirm('Sei sicuro?');" });
+    }
+    else
+    {
+        @("Revisionato")
+    }
+
+}
